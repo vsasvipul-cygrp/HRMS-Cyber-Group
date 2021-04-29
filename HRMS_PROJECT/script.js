@@ -101,3 +101,52 @@ function encryptPassword(){
     
   
   }
+
+
+
+  // -------------- FETCH DATA FROM EMPLOYEE TABLE ------------ 
+
+  function EmployeeFetchData() {
+    fetch("https://localhost:44315/api/employee", {
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer",
+    })
+      .then((res) => res.json())
+  
+      .then((data) => {
+        
+  
+        console.log(data);
+        let li = ``;
+        data.forEach((EmployeeFetch) => {
+          console.log(EmployeeFetch);
+          li += `<tr>
+                
+                <td>${EmployeeFetch.empname}</td>
+                <td>${EmployeeFetch.emailid} </td>
+                <td>${EmployeeFetch.desg}</td>
+                <td>${EmployeeFetch.contact}</td>
+                <td>${EmployeeFetch.amid}</td>
+                           
+                </tr>`;
+        });
+        document.getElementById("employeedata").innerHTML = li;
+        console.log("worked");
+        // console.log(EmployeeFetch);
+  
+        // do something with data
+      })
+      .catch(function (error) {
+  
+        console.log("Looks like there was a problem: \n", error);
+      });
+  
+      
+  }
