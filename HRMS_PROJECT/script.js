@@ -1,12 +1,12 @@
 function login()
 {
  var EmailId = document.getElementById("email");
- var Password = document.getElementById("pwd");
+ var Password = encryptPassword();
 
 var LoginUser = 
 {
 "emailid":EmailId.value,
-"password":Password.value,
+"password":Password,
 }
 
 fetch("https://localhost:44315/api/login", 
@@ -43,3 +43,11 @@ fetch("https://localhost:44315/api/login",
 function openPage(){
   window.open("./index.html", "_blank");
 }
+
+function encryptPassword(){
+  var a=document.getElementById("pwd");
+  var md5Hash = CryptoJS.MD5(a.value); 
+  
+  console.log(md5Hash.toString()); 
+  return md5Hash.toString();
+  }
