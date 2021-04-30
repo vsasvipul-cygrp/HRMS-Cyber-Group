@@ -10,7 +10,7 @@ CREATE TABLE [Employee]
 [Password] [varchar](255) NOT NULL,
 [Desg] [varchar](255) NOT NULL,
 [Contact] [varchar](255) NOT NULL,
-[AMid] [int] NOT NULL,
+[AMid] [varchar](255) NOT NULL,
 [Role] [int] NOT NULL,
 PRIMARY KEY CLUSTERED
 (
