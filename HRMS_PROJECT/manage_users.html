@@ -31,14 +31,21 @@
       rel="stylesheet"
       href="assets/plugins/animation/css/animate.min.css"
     />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9/sha256.js"></script>
+
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
       #success_message{ display: none;}
     </style>
+
+
+
   </head>
 
-  <body>
+  <body  onload="EmployeeFetchData()">
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
       <div class="loader-track">
@@ -272,7 +279,7 @@
             <div class="col-md-8 inputGroupContainer">
             <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input  name="first_name" placeholder="Employee Name" class="form-control"  type="text">
+            <input  name="first_name" id="empname" placeholder="Employee Name" class="form-control"  type="text">
               </div>
             </div>
           </div>
@@ -284,7 +291,7 @@
               <div class="col-md-8 inputGroupContainer">
               <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="last_name" placeholder="Email Id" class="form-control"  type="text">
+            <input name="last_name" id="empemailid" placeholder="Email Id" class="form-control"  type="text">
               </div>
             </div>
           </div>
@@ -299,7 +306,7 @@
               <div class="col-md-8 inputGroupContainer">
               <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="user_password" placeholder="Password" class="form-control"  type="password">
+            <input name="user_password" id="emppass" placeholder="Password" class="form-control"  type="password">
               </div>
             </div>
           </div>
@@ -315,7 +322,7 @@
               <div class="col-md-8 inputGroupContainer">
               <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <input name="contact_no" placeholder="(+91)" class="form-control" type="text">
+            <input name="contact_no" id="empcontact" placeholder="(+91)" class="form-control" type="text">
               </div>
             </div>
           </div>
@@ -325,7 +332,7 @@
               <div class="col-md-8 selectContainer">
               <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="department" class="form-control selectpicker">
+              <select id="empdesg" name="department" class="form-control selectpicker">
                 <option value="">Select Designation</option>
                 <option>Manager</option>
                 <option>Employee</option>
@@ -339,7 +346,7 @@
               <div class="col-md-8 selectContainer">
               <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select name="department" class="form-control selectpicker">
+              <select id="empamid" name="department" class="form-control selectpicker">
                 <option value="">Select Apointed Manager</option>
                 <option>Neeraj</option>
                 <option>Sonali</option>
@@ -403,6 +410,7 @@
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
+    <script src="./signin-manage.js"></script>
 
   </body>
 </html>
