@@ -208,7 +208,7 @@
                                       <div class="col-md-8 selectContainer">
                                       <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                      <select name="department" class="form-control selectpicker">
+                                      <select id="leavetypeid" name="department" class="form-control selectpicker">
                                         <option value="">Select Leave Type</option>
                                         <option>Work From Home</option>
                                         <option>Casual Leave</option>
@@ -230,7 +230,7 @@
                                     <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
                                     <!-- <input  name="first_name" placeholder="Date" class="form-control"  type="text"> -->
                                 
-                                     <input type="date" id="start" name="trip-start" value="2021-04-30" min="2021-01-01" max="2021-12-31">
+                                     <input type="date" id="leavesdate" name="trip-start" value="2021-04-30" min="2021-01-01" max="2021-12-31">
                                      
                                       </div>
                                     </div>
@@ -242,7 +242,7 @@
                                     <div class="input-group">
                                     <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
                                     <!-- <input  name="first_name" placeholder="Date" class="form-control"  type="text"> -->
-                                     <input type="date" id="start" name="trip-start" value="2021-04-30" min="2021-01-01" max="2021-12-31">
+                                     <input type="date" id="leaveedate" name="trip-start" value="2021-04-30" min="2021-01-01" max="2021-12-31">
                                       </div>
                                     </div>
                                   </div>
@@ -252,7 +252,7 @@
                                       <div class="col-md-8 selectContainer">
                                       <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                          <input type="textarea" name="reason" placeholder="Enter your Reason" class="form-control"  type="text">
+                                          <input id="leavereason" type="textarea" name="reason" placeholder="Enter your Reason" class="form-control"  type="text">
                                     </div>
                                   </div>
                                   </div>          
@@ -261,7 +261,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-secondary">Raise Request</button>
+                                <button type="button" class="btn btn-secondary" onclick="AddNewLeave()">Raise Request</button>
                               </div>
                             </div>
                           </div>
