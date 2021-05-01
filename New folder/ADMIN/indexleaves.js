@@ -20,13 +20,24 @@ fetch("https://localhost:44315/api/Leave/",
     console.log(data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
-      // console.log(EmployeeFetch);
+      
+      var sdate=`${EmployeeFetch.sdate}`;
+      var yyyy=sdate.slice(0,4)
+      var mm=sdate.slice(5,7)
+      var dd=sdate.slice(8,10)
+      sdate=mm+"/"+dd+"/"+yyyy
+
+      var edate=`${EmployeeFetch.edate}`;
+      var yyyy=edate.slice(0,4)
+      var mm=edate.slice(5,7)
+      var dd=edate.slice(8,10)
+      edate=mm+"/"+dd+"/"+yyyy
       li += `<tr>
               
               <td>${EmployeeFetch.id}</td>
               <td>${EmployeeFetch.empname} </td>
-              <td>${EmployeeFetch.sdate}</td>
-              <td>${EmployeeFetch.edate}</td>
+              <td>${sdate}</td>
+              <td>${edate}</td>
               <td>${EmployeeFetch.reason}</td>
               <td>${EmployeeFetch.status}</td>
               <td>${EmployeeFetch.amid}</td>

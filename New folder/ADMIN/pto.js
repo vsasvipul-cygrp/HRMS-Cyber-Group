@@ -154,7 +154,7 @@ console.log(d)
 
   Email.send({
     SecureToken:"15310dfc-5ba6-423d-8644-4b455b088f7c",
-    To: "mayank.aggarwal9919@gmail.com",
+    To: "vipul.sinha@cygrp.com",
     From: "hrmscygrp@gmail.com",
     Subject: "An Employee is asking leave"+name,
     Body: Body
