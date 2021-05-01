@@ -144,31 +144,31 @@ console.log(d)
 
 
 
-  // var leave = {
-  //   "id": id,
-  //   "typeid": leavetypeId,
-  //   "sdate": leavesdate.value,
-  //   "edate": leaveddate.value,
-  //   "reason": leaveReason.value,
-  //   "status": "Pending",
-  // };
-  // console.log(leave);
-  // fetch("https://localhost:44315/api/leave",
-  //   {
-  //     method: "POST",
-  //     mode: "cors", // no-cors, *cors, same-origin
-  //     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-  //     credentials: "same-origin", // include, *same-origin, omit
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       // 'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //     redirect: "follow", // manual, *follow, error
-  //     referrerPolicy: "no-referrer",
-  //     body: JSON.stringify(leave),
-  //   })
+  var leave = {
+    "id": id,
+    "typeid": leavetypeId,
+    "sdate": leavesdate.value,
+    "edate": leaveddate.value,
+    "reason": leaveReason.value,
+    "status": "Pending",
+  };
+  console.log(leave);
+  fetch("https://localhost:44315/api/leave",
+    {
+      method: "POST",
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(leave),
+    })
 
-  // console.log("New Leave Added");
+  console.log("New Leave Added");
 
 
 }
