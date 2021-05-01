@@ -1516,11 +1516,10 @@ p.text-muted {
           align-items: center;
 }
 .b-brand .b-bg {
-  background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
-  border-radius: 10px;
+    background:url("./assets/images/logo.png");
   width: 35px;
   height: 35px;
-  display: -webkit-inline-box;
+  /* display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
@@ -1528,7 +1527,7 @@ p.text-muted {
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
+          justify-content: center; */
 }
 .b-brand .b-bg i {
   color: #fff;
