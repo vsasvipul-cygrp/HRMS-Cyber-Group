@@ -37,6 +37,23 @@ namespace HRMS.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("GetManagerEmailid/{Amid}")]
+        //Route("{id}")]    
+        public ActionResult GetManagerEmailid(string Amid) //GetLeaveByAmId  
+        {
+            var result = (from a in _context.Employee
+                          where a.Empname == Amid select new {a.Emailid});
+            return Ok(result);
+
+
+
+
+        }
+
+
+
         [HttpGet]
         [Route("Managerlist")]
         //Route("{id}")]    

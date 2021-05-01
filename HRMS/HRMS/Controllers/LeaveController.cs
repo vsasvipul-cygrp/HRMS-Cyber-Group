@@ -23,8 +23,24 @@ namespace HRMS.Controllers
         [HttpGet]
         public ActionResult AllLeaves()
         {
-            var leave = _context.Leave.ToList();
-            return Ok(leave);
+            var q = (from pd in _context.Leave
+                     join od in _context.Employee on pd.Id equals od.Id
+                     join td in _context.TypeInfo on pd.Typeid equals td.Typeid
+                     select new
+                     {
+                         od.Id,
+                         od.Empname,                    
+                         pd.Sdate,
+                         pd.Edate,
+                         pd.Reason,
+                         pd.Status,
+                         od.Amid,
+                         td.Type,
+
+                     }).ToList();
+
+
+            return Ok(q);
 
         }
 
@@ -36,9 +52,6 @@ namespace HRMS.Controllers
             var leaves = _context.Leave.Where(b => b.Id == id);
             return Ok(leaves);
         }
-
-
-
 
 
         // Get all leaevs that a manager has to take action on. On manager's view
