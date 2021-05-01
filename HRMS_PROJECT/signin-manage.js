@@ -105,12 +105,22 @@
     
         
     }
+
+
+
     var e=window.localStorage.getItem("email");
+    var g=window.localStorage.getItem("email");
 
     
   fetch('https://localhost:44315/api/employee/'+e)
   .then(response => response.json())
   .then(data => window.localStorage.setItem('id',data));
 
+  fetch('https://localhost:44315/api/employee/getrole/'+g)
+  .then(response => response.json())
+  .then(data => window.localStorage.setItem('Role',data));
+
   var ID=window.localStorage.getItem("id");
   console.log(ID);
+
+

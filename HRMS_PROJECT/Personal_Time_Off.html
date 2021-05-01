@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="./table.css"> -->
 
 </head>
 
@@ -260,8 +261,8 @@
                                   </form>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-secondary" onclick="AddNewLeave()">Raise Request</button>
+                                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="AddNewLeave()">Raise Request</button>
                               </div>
                             </div>
                           </div>
@@ -285,12 +286,12 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Type</th>
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
+                                                    <th scope="col">Type</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">End Date</th>
                                                     <!-- <th>No. Of Days</th> -->
-                                                    <th>Status</th>
-                                                    <th>Request Sent To </th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Request Sent To </th>
 
                                                     
                                                 </tr>
@@ -310,13 +311,13 @@
                                             <thead>
                                                 <tr>
                                                     <!-- <th>Name</th> -->
-                                                    <th>Type</th>
+                                                    <th scope="col">Type</th>
                                                     <!-- <th>Requested On</th> -->
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">End Date</th>
                                                     <!-- <th>No. Of Days</th> -->
-                                                    <th>Status</th>
-                                                    <th>Request Sent To </th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Request Sent To </th>
                                                     
 
                                                     <th class="text-right"></th>
@@ -335,13 +336,13 @@
                                             <thead>
                                                 <tr>
                                                     <!-- <th>Name</th> -->
-                                                    <th>Type</th>
+                                                    <th scope="col">Type</th>
                                                     <!-- <th>Requested On</th> -->
-                                                    <th>Start Date</th>
-                                                    <th>End Date</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">End Date</th>
                                                     <!-- <th>No. Of Days</th> -->
-                                                    <th>Status</th>
-                                                    <th>Request Sent To </th> 
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Request Sent To </th> 
                                                 </tr>
                                             </thead>
                                             <tbody id="closerequestleave">
