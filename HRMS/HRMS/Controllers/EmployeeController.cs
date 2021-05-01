@@ -28,6 +28,14 @@ namespace HRMS.Controllers
 
         }
 
+        // GET: api/Employee/5
+        [HttpGet("getEmp/{id}", Name = "Get")]
+        public ActionResult EmployeeById(int id)
+        {
+            var employee = _context.Employee.FirstOrDefault(studentInfo => studentInfo.Id == id);
+            return Ok(employee);
+        }
+
 
         [HttpGet]
         [Route("Managerlist")]
@@ -57,6 +65,19 @@ namespace HRMS.Controllers
         var emp = _context.Employee.FirstOrDefault(employee=>employee.Emailid == email);
         return Ok(emp.Id);
         }
+
+
+
+        //GET: api/Employee/5
+        [Route("getrole/{email}")]
+        [HttpGet()]
+       public ActionResult RoleByEmail(string email)
+        {
+         var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
+           return Ok(emp.Role);
+       }
+
+
 
 
 
