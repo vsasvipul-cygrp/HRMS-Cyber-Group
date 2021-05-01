@@ -143,6 +143,38 @@ console.log(d)
   var id=window.localStorage.getItem("id");
 
 
+  var sd= $('#leavesdate').val();
+  var ed = $('#leaveedate').val();
+  var reason= $('#leavereason').val();
+
+  // var body = $('#body').val();
+
+  var Body='Hey Manager, <br> An Employee has requested a leave from '+sd+'<br> to '+ed+'due to <br>Reason '+reason+'<br>You can either accept it or reject it at www.hrmscygrp.com';
+  //console.log(name, phone, email, message);
+
+  Email.send({
+    SecureToken:"15310dfc-5ba6-423d-8644-4b455b088f7c",
+    To: "mayank.aggarwal9919@gmail.com",
+    From: "hrmscygrp@gmail.com",
+    Subject: "An Employee is asking leave"+name,
+    Body: Body
+  }).then(
+    message =>{
+      //console.log (message);
+      if(message=='OK'){
+      alert('Your mail has been send. Thank you for connecting.');
+      }
+      else{
+        console.error (message);
+        alert('There is error at sending message. ')
+        
+      }
+
+    }
+  );
+
+
+
 
   var leave = {
     "id": id,
