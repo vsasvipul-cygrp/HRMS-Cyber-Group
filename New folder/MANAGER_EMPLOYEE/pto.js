@@ -1,6 +1,3 @@
-
-
-
 // ------------------------ GET LEAVES OF ALL STATUS AND PENDING ----------------- 
 
 var f = window.localStorage.getItem("id");
@@ -22,20 +19,21 @@ fetch("https://localhost:44315/api/Leave/Getleavetable/" + f,
   .then((data) => {
 
 
-    console.log("all"+data);
+    console.log("all" + data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
-      var sdate=`${EmployeeFetch.sdate}`;
-      var yyyy=sdate.slice(0,4)
-      var mm=sdate.slice(5,7)
-      var dd=sdate.slice(8,10)
-      sdate=mm+"/"+dd+"/"+yyyy
+      localStorage.setItem("manager-name", EmployeeFetch.amid)
+      var sdate = `${EmployeeFetch.sdate}`;
+      var yyyy = sdate.slice(0, 4)
+      var mm = sdate.slice(5, 7)
+      var dd = sdate.slice(8, 10)
+      sdate = mm + "/" + dd + "/" + yyyy
 
-      var edate=`${EmployeeFetch.edate}`;
-      var yyyy=edate.slice(0,4)
-      var mm=edate.slice(5,7)
-      var dd=edate.slice(8,10)
-      edate=mm+"/"+dd+"/"+yyyy
+      var edate = `${EmployeeFetch.edate}`;
+      var yyyy = edate.slice(0, 4)
+      var mm = edate.slice(5, 7)
+      var dd = edate.slice(8, 10)
+      edate = mm + "/" + dd + "/" + yyyy
       li += `<tr>
               
               <td>${EmployeeFetch.type}</td>
@@ -70,20 +68,20 @@ fetch("https://localhost:44315/api/Leave/GetOpenedLeaveTable/" + f,
   .then((data) => {
 
 
-    console.log("open"+data);
+    console.log("open" + data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
-      var sdate=`${EmployeeFetch.sdate}`;
-      var yyyy=sdate.slice(0,4)
-      var mm=sdate.slice(5,7)
-      var dd=sdate.slice(8,10)
-      sdate=mm+"/"+dd+"/"+yyyy
+      var sdate = `${EmployeeFetch.sdate}`;
+      var yyyy = sdate.slice(0, 4)
+      var mm = sdate.slice(5, 7)
+      var dd = sdate.slice(8, 10)
+      sdate = mm + "/" + dd + "/" + yyyy
 
-      var edate=`${EmployeeFetch.edate}`;
-      var yyyy=edate.slice(0,4)
-      var mm=edate.slice(5,7)
-      var dd=edate.slice(8,10)
-      edate=mm+"/"+dd+"/"+yyyy
+      var edate = `${EmployeeFetch.edate}`;
+      var yyyy = edate.slice(0, 4)
+      var mm = edate.slice(5, 7)
+      var dd = edate.slice(8, 10)
+      edate = mm + "/" + dd + "/" + yyyy
       li += `<tr>
                
                <td>${EmployeeFetch.type}</td>
@@ -116,20 +114,20 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
   .then((result) => result.json())
 
   .then((data) => {
-    console.log("closed"+data);
+    console.log("closed" + data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
-      var sdate=`${EmployeeFetch.sdate}`;
-      var yyyy=sdate.slice(0,4)
-      var mm=sdate.slice(5,7)
-      var dd=sdate.slice(8,10)
-      sdate=mm+"/"+dd+"/"+yyyy
+      var sdate = `${EmployeeFetch.sdate}`;
+      var yyyy = sdate.slice(0, 4)
+      var mm = sdate.slice(5, 7)
+      var dd = sdate.slice(8, 10)
+      sdate = mm + "/" + dd + "/" + yyyy
 
-      var edate=`${EmployeeFetch.edate}`;
-      var yyyy=edate.slice(0,4)
-      var mm=edate.slice(5,7)
-      var dd=edate.slice(8,10)
-      edate=mm+"/"+dd+"/"+yyyy
+      var edate = `${EmployeeFetch.edate}`;
+      var yyyy = edate.slice(0, 4)
+      var mm = edate.slice(5, 7)
+      var dd = edate.slice(8, 10)
+      edate = mm + "/" + dd + "/" + yyyy
       li += `<tr>
                 
                 <td>${EmployeeFetch.type}</td>
@@ -149,6 +147,11 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
 // --------------- ADD NEW LEAVE -------------- 
 
 function AddNewLeave() {
+  var managername = localStorage.getItem('Manager-name');
+  console.log(managername)
+  fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
+    .then(response => response.json())
+    .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
   var x = document.getElementById("leavetypeid");
   var Leavetype = x.options[x.selectedIndex].text;
   var leavetypeId;
@@ -160,46 +163,10 @@ function AddNewLeave() {
   else if (Leavetype == "Maternity Leave") leavetypeId = 6;
   else if (Leavetype == "Bereavement Leave") leavetypeId = 7;
 
+  var id = localStorage.getItem('id');
   var leavesdate = document.getElementById("leavesdate");
-  var d = leavesdate.value
-  console.log(d)
   var leaveddate = document.getElementById("leaveedate");
   var leaveReason = document.getElementById("leavereason");
-  var id = window.localStorage.getItem("id");
-
-
-  var sd = $('#leavesdate').val();
-  var ed = $('#leaveedate').val();
-  var reason = $('#leavereason').val();
-
-  // var body = $('#body').val();
-
-  var Body = 'Hey Manager, <br> An Employee has requested a leave from ' + sd + '<br> to ' + ed + 'due to <br>Reason ' + reason + '<br>You can either accept it or reject it at www.hrmscygrp.com';
-  //console.log(name, phone, email, message);
-
-  Email.send({
-    SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
-    To: "mayank.aggarwal9919@gmail.com",
-    From: "hrmscygrp@gmail.com",
-    Subject: "An Employee is asking leave" + name,
-    Body: Body
-  }).then(
-    message => {
-      //console.log (message);
-      if (message == 'OK') {
-        alert('Your mail has been send. Thank you for connecting.');
-      }
-      else {
-        console.error(message);
-        alert('There is error at sending message. ')
-
-      }
-
-    }
-  );
-
-
-
 
   var leave = {
     "id": id,
@@ -227,5 +194,35 @@ function AddNewLeave() {
 
   console.log("New Leave Added");
 
+
+
+  var sd = $('#leavesdate').val();
+  var ed = $('#leaveedate').val();
+  var managerMail = localStorage.getItem('managerMail')
+  var employeeName = localStorage.getItem('Employee-name')
+  var reason = $('#leavereason').val();
+  console.log(managerMail)
+
+  var Body = 'Hi ' + managername + ', <br> ' + employeeName + ' has requested a leave from ' + sd + ' to ' + ed + ' reason being ' + reason + "." + '<br>Please respond accordingly.';
+
+  Email.send({
+    SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
+    To: managerMail,
+    From: "hrmscygrp@gmail.com",
+    Subject: "Leave Request - " + employeeName,
+    Body: Body
+  }).then(
+    message => {
+      if (message == 'OK') {
+        alert('Leave Applied Successfully.');
+      }
+      else {
+        console.error(message);
+        alert('Leave.')
+
+      }
+
+    }
+  );
 
 }

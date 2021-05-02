@@ -1,5 +1,5 @@
 var role = localStorage.getItem("role")
-var AmId = localStorage.getItem("AmId")
+var AmId = localStorage.getItem("Employee-name")
 
 if (role != 2) document.getElementById("manager").style.display = 'none'
 
@@ -49,14 +49,14 @@ fetch("https://localhost:44315/api/leave/" + AmId,
               <td>${edate}</td>
               <td>${EmployeeFetch.reason}</td>
               <td>${EmployeeFetch.type}</td>
-                <td> <a href="#!" onclick="approveRequest(${EmployeeFetch.leaveid},${EmployeeFetch.id},${EmployeeFetch.typeid},'${EmployeeFetch.sdate}','${EmployeeFetch.edate}','${reason}')" class="label theme-bg text-white f-12 rounded">Approve</a> <a href="#!" onclick="rejectRequest()" class="label theme-bg2 text-white f-12 rounded">Reject</a></td>         
+                <td> <a href="#!" onclick="approveRequest(${EmployeeFetch.leaveid},${EmployeeFetch.id},${EmployeeFetch.typeid},'${EmployeeFetch.sdate}','${EmployeeFetch.edate}','${reason}')" class="label theme-bg text-white f-12 rounded">Approve</a> <a href="#!" onclick="rejectRequest(${EmployeeFetch.leaveid},${EmployeeFetch.id},${EmployeeFetch.typeid},'${EmployeeFetch.sdate}','${EmployeeFetch.edate}','${reason}')" class="label theme-bg2 text-white f-12 rounded">Reject</a></td>         
               </tr>`;
         });
         document.getElementById("managerLeaveRequests").innerHTML = li;
     });
 
 
-function approveRequest(lId,eId, typeId, sDate, eDate, reason) {
+function approveRequest(lId, eId, typeId, sDate, eDate, reason) {
     console.log(lId)
     console.log(eId)
     console.log(typeId)
@@ -65,7 +65,6 @@ function approveRequest(lId,eId, typeId, sDate, eDate, reason) {
     reason = reason.replace("~", "'");
     console.log(reason)
     var Leave = {
-        "leaveid": lId,
         "id": eId,
         "typeid": typeId,
         "sdate": sDate,
@@ -74,24 +73,62 @@ function approveRequest(lId,eId, typeId, sDate, eDate, reason) {
         "status": "Approved",
     };
     console.log(Leave);
-    // var urlUpdate = "https://localhost:44315/api/leave/" + eId.toString();
-    // console.log(urlUpdate);
-    // fetch(urlUpdate, {
-    //     method: "PUT",
-    //     mode: "cors", // no-cors, *cors, same-origin
-    //     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //     credentials: "same-origin", // include, *same-origin, omit
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         // 'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     redirect: "follow", // manual, *follow, error
-    //     referrerPolicy: "no-referrer",
-    //     body: JSON.stringify(Leave),
-    // })
-    //     //.then(response => response.json())
-    //     .then((result) => {
-    //         console.log(result);
-    //     });
-    // alert();
+    var urlUpdate = "https://localhost:44315/api/leave/" + lId.toString();
+    console.log(urlUpdate);
+    fetch(urlUpdate, {
+        method: "PUT",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(Leave),
+    })
+        //.then(response => response.json())
+        .then((result) => {
+            console.log(result);
+        });
+    alert();
+}
+function rejectRequest(lId, eId, typeId, sDate, eDate, reason) {
+    console.log(lId)
+    console.log(eId)
+    console.log(typeId)
+    console.log(sDate)
+    console.log(eDate)
+    reason = reason.replace("~", "'");
+    console.log(reason)
+    var Leave = {
+        "id": eId,
+        "typeid": typeId,
+        "sdate": sDate,
+        "edate": eDate,
+        "reason": reason,
+        "status": "Rejected",
+    };
+    console.log(Leave);
+    var urlUpdate = "https://localhost:44315/api/leave/" + lId.toString();
+    console.log(urlUpdate);
+    fetch(urlUpdate, {
+        method: "PUT",
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(Leave),
+    })
+        //.then(response => response.json())
+        .then((result) => {
+            console.log(result);
+        });
+    alert();
 }
