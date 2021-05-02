@@ -1,5 +1,7 @@
 
-    fetch("https://localhost:44315/api/Employee/Managerlist",
+    //  FETCHING MANAGER LIST FOR ADD EMPLOYEE COLUMN ---------------- 
+   
+   fetch("https://localhost:44315/api/Employee/Managerlist",
     {
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
