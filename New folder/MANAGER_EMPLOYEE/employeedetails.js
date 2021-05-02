@@ -18,7 +18,7 @@ fetch("https://localhost:44315/api/employee/getemp/" + id,
     .then((result) => result.json())
 
     .then((data) => {
-
+        window.localStorage.setItem("AmId", data.empname)
         document.getElementById("empname").value = data.empname
         document.getElementById("emailid").value = data.emailid
         var nickname=document.getElementById("emailid").value;
