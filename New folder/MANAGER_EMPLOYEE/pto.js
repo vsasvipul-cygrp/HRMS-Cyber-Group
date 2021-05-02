@@ -1,3 +1,9 @@
+var managername = localStorage.getItem('Manager-name');
+  console.log(managername)
+  fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
+    .then(response => response.json())
+    .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
+
 // ------------------------ GET LEAVES OF ALL STATUS AND PENDING ----------------- 
 
 var f = window.localStorage.getItem("id");
@@ -147,11 +153,7 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
 // --------------- ADD NEW LEAVE -------------- 
 
 function AddNewLeave() {
-  var managername = localStorage.getItem('Manager-name');
-  console.log(managername)
-  fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
-    .then(response => response.json())
-    .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
+  
   var x = document.getElementById("leavetypeid");
   var Leavetype = x.options[x.selectedIndex].text;
   var leavetypeId;
