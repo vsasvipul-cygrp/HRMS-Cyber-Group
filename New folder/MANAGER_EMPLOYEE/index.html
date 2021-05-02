@@ -40,6 +40,12 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
+  <style>
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+    }
+  </style>
 
   <body>
     <!-- [ Pre-loader ] start -->
@@ -230,97 +236,263 @@
             <div class="main-body">
               <div class="page-wrapper">
                 <div class="row">
-                  <!--[ daily sales section ] start-->
-                  <div class="col-md-6 col-xl-4">
-                    <div class="card daily-sales">
-                      <div class="card-block">
-                        <h6 class="mb-4">Balance</h6>
-                        <div class="row d-flex align-items-center">
-                          <div class="col-9">
-                            <h3 class="f-w-300 d-flex align-items-center m-b-0">
-                              <i class="fas fa-circle text-c-orange f-10"></i
-                              >&nbsp; 25
-                            </h3>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedWfh"></span><span>/</span
+                                ><span>0</span>
+                              </h3>
+                              <span>Work From Home</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-book-open primary font-large-2 float-right"
+                              ></i>
+                            </div>
                           </div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="80"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedCl"></span><span>/</span
+                                ><span>7</span>
+                              </h3>
+                              <span>Casual Leave</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-bubbles warning font-large-2 float-right"
+                              ></i>
+                            </div>
+                          </div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="35"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                          <div class="col-3 text-right">
-                            <p class="m-b-0">67%</p>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedSl"></span><span>/</span
+                                ><span>11</span>
+                              </h3>
+                              <span>Sick Leave</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-cup success font-large-2 float-right"
+                              ></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="progress m-t-30" style="height: 7px">
-                          <div
-                            class="progress-bar progress-c-theme5"
-                            role="progressbar"
-                            style="width: 50%"
-                            aria-valuenow="50"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="60"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!--[ daily sales section ] end-->
-                  <!--[ Monthly  sales section ] starts-->
-                  <div class="col-md-6 col-xl-4">
-                    <div class="card Monthly-sales">
-                      <div class="card-block">
-                        <h6 class="mb-4">Pending</h6>
-                        <div class="row d-flex align-items-center">
-                          <div class="col-9">
-                            <h3 class="f-w-300 d-flex align-items-center m-b-0">
-                              <i class="fas fa-circle text-c-red f-10"></i
-                              >&nbsp; 2
-                            </h3>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedEl"></span><span>/</span
+                                ><span>11</span>
+                              </h3>
+                              <span>Earned Leave</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-direction danger font-large-2 float-right"
+                              ></i>
+                            </div>
                           </div>
-                          <div class="col-3 text-right">
-                            <p class="m-b-0">36%</p>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="40"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
                           </div>
-                        </div>
-                        <div class="progress m-t-30" style="height: 7px">
-                          <div
-                            class="progress-bar progress-c-theme4"
-                            role="progressbar"
-                            style="width: 35%"
-                            aria-valuenow="35"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!--[ Monthly  sales section ] end-->
-                  <!--[ year  sales section ] starts-->
-                  <div class="col-md-12 col-xl-4">
-                    <div class="card yearly-sales">
-                      <div class="card-block">
-                        <h6 class="mb-4">Aproved</h6>
-                        <div class="row d-flex align-items-center">
-                          <div class="col-9">
-                            <h3 class="f-w-300 d-flex align-items-center m-b-0">
-                              <i class="fas fa-circle text-c-green f-10"></i
-                              >&nbsp; 10
-                            </h3>
+                </div>
+                <div class="row">
+                  <div class="col-xl-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedLwp"></span><span>/</span
+                                ><span>0</span>
+                              </h3>
+                              <span>Leave Without Pay</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-book-open primary font-large-2 float-right"
+                              ></i>
+                            </div>
                           </div>
-                          <div class="col-3 text-right">
-                            <p class="m-b-0">80%</p>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="80"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
                           </div>
-                        </div>
-                        <div class="progress m-t-30" style="height: 7px">
-                          <div
-                            class="progress-bar progress-c-green"
-                            role="progressbar"
-                            style="width: 70%"
-                            aria-valuenow="70"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!--[ year  sales section ] end-->
+                  <div class="col-xl-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedMl"></span><span>/</span
+                                ><span>5</span>
+                              </h3>
+                              <span>Marital Leave</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-bubbles warning font-large-2 float-right"
+                              ></i>
+                            </div>
+                          </div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="35"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="primary">
+                                <span id="approvedBl"></span><span>/</span
+                                ><span>3</span>
+                              </h3>
+                              <span>Bereavement Leave</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-cup success font-large-2 float-right"
+                              ></i>
+                            </div>
+                          </div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 100%"
+                              aria-valuenow="60"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="card-body">
+                          <div class="media d-flex">
+                            <div class="media-body text-left">
+                              <h3 class="danger">423</h3>
+                              <span>Total Visits</span>
+                            </div>
+                            <div class="align-self-center">
+                              <i
+                                class="icon-direction danger font-large-2 float-right"
+                              ></i>
+                            </div>
+                          </div>
+                          <div class="progress mt-1 mb-0" style="height: 7px">
+                            <div
+                              class="progress-bar bg-danger"
+                              role="progressbar"
+                              style="width: 40%"
+                              aria-valuenow="40"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
                 </div>
                 <div>
                   <h3 style="padding-left: 20px; color: #424642">
