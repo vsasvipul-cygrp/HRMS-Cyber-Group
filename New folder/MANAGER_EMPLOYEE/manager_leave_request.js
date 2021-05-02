@@ -39,6 +39,8 @@ fetch("https://localhost:44315/api/leave/" + AmId,
             edate = mm + "/" + dd + "/" + yyyy
 
             var reason = `${EmployeeFetch.reason}`;
+            reason = reason.replace("'", "~");
+            console.log(reason)
             li += `<tr>
               
               <td>${EmployeeFetch.id}</td>
@@ -54,19 +56,25 @@ fetch("https://localhost:44315/api/leave/" + AmId,
     });
 
 
-function approveRequest(lId, id, typeId, sDate, eDate, reason) {
+function approveRequest(lId,eId, typeId, sDate, eDate, reason) {
+    console.log(lId)
+    console.log(eId)
+    console.log(typeId)
+    console.log(sDate)
+    console.log(eDate)
+    reason = reason.replace("~", "'");
     console.log(reason)
-    // var TempUser = {
-    //     "leaveid": l,
-    //     "id": id,
-    //     "typeid": 2,
-    //     "sdate": "2021-05-02T00:00:00",
-    //     "edate": "2021-05-04T00:00:00",
-    //     "reason": "Family Function",
-    //     "status": "Approved",
-    // };
-    // console.log(TempUser);
-    // var urlUpdate = "https://localhost:44315/api/leave/" + id.toString();
+    var Leave = {
+        "leaveid": lId,
+        "id": eId,
+        "typeid": typeId,
+        "sdate": sDate,
+        "edate": eDate,
+        "reason": reason,
+        "status": "Approved",
+    };
+    console.log(Leave);
+    // var urlUpdate = "https://localhost:44315/api/leave/" + eId.toString();
     // console.log(urlUpdate);
     // fetch(urlUpdate, {
     //     method: "PUT",
@@ -79,10 +87,11 @@ function approveRequest(lId, id, typeId, sDate, eDate, reason) {
     //     },
     //     redirect: "follow", // manual, *follow, error
     //     referrerPolicy: "no-referrer",
-    //     body: JSON.stringify(TempUser),
+    //     body: JSON.stringify(Leave),
     // })
     //     //.then(response => response.json())
     //     .then((result) => {
     //         console.log(result);
     //     });
+    // alert();
 }

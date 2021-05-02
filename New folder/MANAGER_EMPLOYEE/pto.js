@@ -1,3 +1,6 @@
+
+
+
 // ------------------------ GET LEAVES OF ALL STATUS AND PENDING ----------------- 
 
 var f = window.localStorage.getItem("id");
@@ -164,7 +167,6 @@ function AddNewLeave() {
   var leaveReason = document.getElementById("leavereason");
   var id = window.localStorage.getItem("id");
 
-  // ---------------------SMTP  IS HERE ----------- 
 
   var sd = $('#leavesdate').val();
   var ed = $('#leaveedate').val();
@@ -195,6 +197,8 @@ function AddNewLeave() {
 
     }
   );
+
+
 
 
   var leave = {

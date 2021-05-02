@@ -28,3 +28,7 @@ fetch("https://localhost:44315/api/employee/getemp/" + id,
         document.getElementById("contact").value = data.contact
         document.getElementById("amid").value = data.amid
     });
+
+    // var reason = `${EmployeeFetch.reason}`;
+            // reason = reason.replace("'","~");
+            // console.log(reason)
