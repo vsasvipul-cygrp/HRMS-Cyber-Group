@@ -1,3 +1,38 @@
+function check() {
+  const emailValue = email.value.trim();
+  const passwordValue = password.value.trim();
+
+  if (emailValue === '' && passwordValue === '') {
+    swal({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Incomplete credentials.',
+
+    });
+  }
+  if (emailValue === '') {
+    setErrorFor(email, 'Email cannot be blank');
+  }
+
+  else if (!isEmail(emailValue)) {
+    setErrorFor(email, 'Email is not valid');
+  }
+  else {
+    setSuccessFor(email);
+  }
+  if (passwordValue === '') {
+    setErrorFor(password, 'Password cannot be blank');
+  }
+  else {
+    setSuccessFor(password);
+  }
+  if(window.localStorage.getItem("token")!=false){
+
+    login();
+  }
+
+}
+
 function login() {
   var EmailId = document.getElementById("email");
   var Password = encryptPassword();
@@ -32,7 +67,6 @@ function login() {
       window.localStorage.setItem("email", EmailId.value);
 
       if (window.localStorage.getItem("token").toString() != "false") {
-        console.log("hi")
         if (window.localStorage.getItem("role") == "1") {
           console.log("hello")
           window.open("./ADMIN/index.html", "_self");
@@ -48,7 +82,6 @@ function login() {
         });
 
       } else {
-        alert("hi")
         // swal({
         //   icon: 'error',
         //    title: 'User not found!',
@@ -79,123 +112,80 @@ const email = document.getElementById('email');
 const password = document.getElementById('pwd');
 
 
-function check() {
 
-  const emailValue = email.value.trim();
-  const passwordValue = password.value.trim();
+function setErrorFor(input, message) {
 
-  if (emailValue === '' && passwordValue === '') {
-    swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Complete it!',
+  const formCtrl = input.parentElement; //.form-control
 
-    });
-  }
-  else if (emailValue === '') {
-    swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Email Can not be blank!',
+  const small = formCtrl.querySelector('small');
+  console.log(formCtrl)
 
-    });
-  } else if (!isEmail(emailValue)) {
+  console.log(small)
 
-    swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Not a valid Email!',
+  //add error message inside small
+  small.innerText = message;
 
-    });
-  }
-  else if (passwordValue === '') {
-    swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Password  Can not be blank!',
-    });
-  }
-
+  //add error class
+  formCtrl.className = 'form-ctrl error';
 }
-
-
-
+function setSuccessFor(input) {
+  const formCtrl = input.parentElement; //.form-control
+  formCtrl.className = 'form-ctrl success';
+}
 function isEmail(email) {
-  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
-
-
-
 
 function getPassword() {
-  var email=document.getElementById("forgot-email").value;
+  var email = document.getElementById("forgot-email").value;
   console.log(email);
-  // fetch("https://localhost:44315/api/employee/forgot/" + email,
-  // {
-  //   method: "GET",
-  //   mode: "cors", // no-cors, *cors, same-origin
-  //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-  //   credentials: "same-origin", // include, *same-origin, omit
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     // 'Content-Type': 'application/x-www-form-urlencoded',
-  //   },
-  //   redirect: "follow", // manual, *follow, error
-  //   referrerPolicy: "no-referrer",
-  // })
-  // //.then(response => response.json())
-  // .then((result) => result.json())
-
-  // .then((data) => {
-  //   console.log(data);    
-  // });
 
   fetch("https://localhost:44315/api/employee/forgot/" + email,
-  {
-    method: "GET",
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrerPolicy: "no-referrer",
-  })
-  //.then(response => response.json())
-  .then((result) => result.text())
+    {
+      method: "GET",
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer",
+    })
+    //.then(response => response.json())
+    .then((result) => result.text())
 
-  .then((data) => {
-    var encryptedPassword = data;
-    console.log(encryptedPassword)
- 
-    // var body = $('#body').val();
-  
-    var Body='Hey User, Your encrypted password is given below.<br>Kindly decrypt it and secure your password by changing it ASAP.<br><b>ENCRYPTED PASSWORD</b> :'+encryptedPassword;
-    //console.log(name, phone, email, message);
-  
-    Email.send({
-      SecureToken:"15310dfc-5ba6-423d-8644-4b455b088f7c",
-      To: email,
-      From: "hrmscygrp@gmail.com",
-      Subject: "Encrypted Password - "+email,
-      Body: Body
-    }).then(
-      message =>{
-        //console.log (message);
-        if(message=='OK'){
-        alert('Your mail has been send. Thank you for connecting.');
+    .then((data) => {
+      var encryptedPassword = data;
+      console.log(encryptedPassword)
+
+      // var body = $('#body').val();
+
+      var Body = 'Hey User, Your encrypted password is given below.<br>Kindly decrypt it and secure your password by changing it ASAP.<br><b>ENCRYPTED PASSWORD</b> :' + encryptedPassword;
+      //console.log(name, phone, email, message);
+
+      Email.send({
+        SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
+        To: email,
+        From: "hrmscygrp@gmail.com",
+        Subject: "Encrypted Password - " + email,
+        Body: Body
+      }).then(
+        message => {
+          //console.log (message);
+          if (message == 'OK') {
+            alert('Your mail has been send. Thank you for connecting.');
+          }
+          else {
+            console.error(message);
+            alert('There is error at sending message. ')
+
+          }
+
         }
-        else{
-          console.error (message);
-          alert('There is error at sending message. ')
-          
-        }
-  
-      }
-    );
-  });
+      );
+    });
 }
 
 
