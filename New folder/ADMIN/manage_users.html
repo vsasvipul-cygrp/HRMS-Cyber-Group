@@ -37,8 +37,65 @@
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css" />
+   
+   
     <style>
-      #success_message{ display: none;}
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+
+/* .form{
+  padding: 30px 40px;
+} */
+.form-ctrl{
+  margin-bottom: 10px; 
+ padding-bottom: 20px;
+  position: relative;
+}
+.form-ctrl label{
+  display: inline-block;
+  /* margin-bottom: 5px; */
+}
+.form-ctrl input{
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+}
+.form-ctrl.success input{
+  border-color: #2ecc71;
+}
+.form-ctrl.error input{
+  border-color: #e74c3c;
+}
+
+.form-ctrl i{
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  visibility: hidden;
+}
+.form-ctrl.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+.form-ctrl.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;  
+}
+.form-ctrl small{
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.form-ctrl.error small {
+  color: #e74c3c;
+  visibility: visible;  
+}
+
     </style>
 
 
@@ -203,7 +260,7 @@
                     >
                   </li>
                   <li>
-                    <a href="../auth-signin.html" onclick="localStorage.clear()" class="dropdown-item"
+                    <a href="../auth-signin.html" class="dropdown-item"
                       ><i class="feather icon-lock"></i> Log Out</a
                     >
                   </li>
@@ -265,96 +322,77 @@
       </div>
       <div class="modal-body">
        
-        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-          <fieldset>
+        <form class="form" id="contact_form">
+        <!-- <form class="well form-horizontal" action=" " method="post"  id="contact_form"> -->
+      
           
          
           <!-- Text input-->
-          
-          <div class="form-group">
-            <label class="col-md-8 control-label">Employee Name</label>  
-            <div class="col-md-8 inputGroupContainer">
-            <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input  name="first_name" id="empname" placeholder="Employee Name" class="form-control"  type="text">
-              </div>
-            </div>
-          </div>
-          
-          <!-- Text input-->
-          
-          <div class="form-group">
-            <label class="col-md-8 control-label" >Email Id</label> 
-              <div class="col-md-8 inputGroupContainer">
-              <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="last_name" id="empemailid" placeholder="Email Id" class="form-control"  type="text">
-              </div>
-            </div>
-          </div>
-          
-           
         
-          
-          <!-- Text input-->
-          
-          <div class="form-group">
-            <label class="col-md-8 control-label" >Password</label> 
-              <div class="col-md-8 inputGroupContainer">
-              <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="user_password" id="emppass" placeholder="Password" class="form-control"  type="password">
-              </div>
-            </div>
+          <div class="form-ctrl">
+            <!-- <label>Employee Name</label> -->
+            <input  name="first_name" id="empname" placeholder="Employee Name" class="form-control"  type="text">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
           </div>
-          
-          <!-- Text input-->
-          
          
           
           <!-- Text input-->
-                 
-          <div class="form-group">
-            <label class="col-md-8 control-label">Contact No.</label>  
-              <div class="col-md-8 inputGroupContainer">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <input name="contact_no" id="empcontact" placeholder="(+91)" class="form-control" type="text">
-              </div>
-            </div>
+          <div class="form-ctrl">
+            <!-- <label>Email</label> -->
+            <input name="last_name" id="empemailid" placeholder="Email Id" class="form-control"  type="text">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
           </div>
+          
 
-          <div class="form-group"> 
-            <label class="col-md-8 control-label">Designation</label>
-              <div class="col-md-8 selectContainer">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-              <select id="empdesg" name="department" class="form-control selectpicker">
+          <!-- Text input-->
+          <div class="form-ctrl">
+            <!-- <label>Password</label> -->
+            <input name="user_password" id="emppass" placeholder="Password" class="form-control"  type="password">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-ctrl">
+              <!-- <label>Contact Number</label> -->
+              <input name="contact_no" id="empcontact" placeholder="(+91)" class="form-control" type="text">
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+              <small>Error message</small>
+            </div>
+            <div class="form-ctrl">
+              
+              <select id="empdesg" name="department" class="form-control selectpicker" onclick="checkDesignation()">
                 <option value="">Select Designation</option>
                 <option>Manager</option>
                 <option>Employee</option>
+                
+
               </select>
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+
             </div>
-          </div>
-          </div>
-            
-          <div class="form-group"> 
-            <label class="col-md-8 control-label">Appointed Manager</label>
-              <div class="col-md-8 selectContainer">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <div class="form-ctrl">
               <select id="managernamelist" name="department" class="form-control selectpicker">
-                <option  value="">Select Apointed Manager</option>
+                <option  value="">Select Appointed Manager</option>
+                
+
                        
               </select>
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
             </div>
-          </div>
-          </div>          
-          </fieldset>
-          </form>
+       
+      </form>         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="AddEmployee()">Add New Employee</button>
+        <button type="button" class="btn btn-primary" onclick="checkInputs()">Add New Employee</button>
       </div>
     </div>
   </div>
@@ -397,12 +435,16 @@
         </div>
       </div>
     </div>
-
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
     <script src="./signin-manage.js"></script>
     <script src="./managerlist.js"></script>
     <script src="./pto.js"></script>
+    <script src="./managerusers.js"></script>
   </body>
 </html>
