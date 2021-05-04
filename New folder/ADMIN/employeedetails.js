@@ -1,3 +1,5 @@
+
+
 fetch("https://localhost:44315/api/Employee/GetEmployeeName")
     .then((res) => res.json())
     .then((data) => {
@@ -56,9 +58,9 @@ $('#allEmployeeList').on('change', function () {
                             };
                             window.requestAnimationFrame(step);
                         }
-                        const total=document.getElementById("totalWfh").innerHTML;
+                        const total = document.getElementById("totalWfh").innerHTML;
                         const obj = document.getElementById("approvedWfh");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -96,10 +98,10 @@ $('#allEmployeeList').on('change', function () {
                             };
                             window.requestAnimationFrame(step);
                         }
-                        
-                        const total=document.getElementById("totalCl").innerHTML;
+
+                        const total = document.getElementById("totalCl").innerHTML;
                         const obj = document.getElementById("approvedCl");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -137,9 +139,9 @@ $('#allEmployeeList').on('change', function () {
                             };
                             window.requestAnimationFrame(step);
                         }
-                        const total=document.getElementById("totalSl").innerHTML;
+                        const total = document.getElementById("totalSl").innerHTML;
                         const obj = document.getElementById("approvedSl");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -178,9 +180,9 @@ $('#allEmployeeList').on('change', function () {
                             window.requestAnimationFrame(step);
                         }
 
-                        const total=document.getElementById("totalEl").innerHTML;
+                        const total = document.getElementById("totalEl").innerHTML;
                         const obj = document.getElementById("approvedEl");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -218,9 +220,9 @@ $('#allEmployeeList').on('change', function () {
                             };
                             window.requestAnimationFrame(step);
                         }
-                        const total=document.getElementById("totalLwp").innerHTML;
+                        const total = document.getElementById("totalLwp").innerHTML;
                         const obj = document.getElementById("approvedLwp");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -258,9 +260,9 @@ $('#allEmployeeList').on('change', function () {
                             };
                             window.requestAnimationFrame(step);
                         }
-                        const total=document.getElementById("totalMl").innerHTML;
+                        const total = document.getElementById("totalMl").innerHTML;
                         const obj = document.getElementById("approvedMl");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
 
@@ -299,9 +301,9 @@ $('#allEmployeeList').on('change', function () {
                             window.requestAnimationFrame(step);
                         }
 
-                        const total=document.getElementById("totalBl").innerHTML;
+                        const total = document.getElementById("totalBl").innerHTML;
                         const obj = document.getElementById("approvedBl");
-                        const remaining = total-c;
+                        const remaining = total - c;
                         animateValue(obj, 0, remaining, 500);
                     });
             });

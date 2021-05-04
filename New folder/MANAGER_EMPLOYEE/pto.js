@@ -1,5 +1,4 @@
 var managername = localStorage.getItem('Manager-name');
-  console.log(managername)
   fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
     .then(response => response.json())
     .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
@@ -149,8 +148,9 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
 
 
 
-
+// *********************************************
 // --------------- ADD NEW LEAVE -------------- 
+// *********************************************
 
 function AddNewLeave() {
   
@@ -216,11 +216,21 @@ function AddNewLeave() {
   }).then(
     message => {
       if (message == 'OK') {
-        alert('Leave Applied Successfully.');
+        swal({
+          icon: 'success',
+          //  title: 'Oops...',
+          text: 'Leave Applied Successfully',
+            
+         });
       }
       else {
         console.error(message);
-        alert('Leave.')
+        swal({
+          icon: 'error',
+           title: 'Oops...',
+          text: 'Leave Failed',
+            
+         });
 
       }
 

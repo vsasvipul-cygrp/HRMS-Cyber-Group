@@ -1,3 +1,39 @@
+// ****************************************************
+// *********************FETCH DATA*********************
+// ****************************************************
+function EmployeeFetchData() {
+    fetch("https://localhost:44315/api/employee", {
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            let li = ``;
+            data.forEach((EmployeeFetch) => {
+                li += `<tr>                  
+                    <td>${EmployeeFetch.empname}</td>
+                    <td>${EmployeeFetch.emailid} </td>
+                    <td>${EmployeeFetch.desg}</td>
+                    <td>${EmployeeFetch.contact}</td>
+                    <td>${EmployeeFetch.amid}</td>                             
+                  </tr>`;
+            });
+            document.getElementById("employeedata").innerHTML = li;
+        })
+        .catch(function (error) {
+            console.log("Looks like there was a problem: \n", error);
+        });
+}
+// ****************************************************
+// ****************FORM VALIDATION*********************
+// ****************************************************
 const form = document.getElementById('form');
 const username = document.getElementById('empname');
 const email = document.getElementById('empemailid');
@@ -5,7 +41,6 @@ const password = document.getElementById('emppass');
 const contact = document.getElementById('empcontact');
 const e = document.getElementById("empdesg");
 const x = document.getElementById("managernamelist");
-
 
 function checkInputs() {
     const usernameValue = username.value.trim();
@@ -41,13 +76,19 @@ function checkInputs() {
                             $('#staticBackdrop').on('hidden.bs.modal', function () {
                                 $(this).find('form').trigger('reset');
                             })
+                            EmployeeFetchData();
                         }
                     }
                 }
             }
         }
     }
+
+
 }
+// ****************************************************
+// *************ADD USER FORM VALIDATION****************
+// ****************************************************
 function setErrorFor(input, message) {
 
     const formCtrl = input.parentElement; //.form-control
@@ -79,7 +120,9 @@ function isPhone(contact) {
 function isPassword(password) {
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
 }
-
+// ****************************************************
+// *********************ADD DATA*********************
+// ****************************************************
 function AddEmployee() {
     var EmployeeName = document.getElementById("empname");
     var EmployeeEmailId = document.getElementById("empemailid");
@@ -106,8 +149,6 @@ function AddEmployee() {
     console.log(tempUser);
     fetch("https://localhost:44315/api/employee",
         {
-
-
             method: "POST",
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -125,7 +166,9 @@ function AddEmployee() {
 
 
 }
-
+// ****************************************************
+// ***********PASSWORD ENCRYPTION*********************
+// ****************************************************
 function abc() {
     var a = document.getElementById("emppass").value;
     const key = '55a51621a6648525';
