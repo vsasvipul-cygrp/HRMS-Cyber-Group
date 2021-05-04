@@ -2,9 +2,6 @@
 
 var f = window.localStorage.getItem("id");
 
-
-
-
 fetch("https://localhost:44315/api/Leave/Getleavetable/" + f,
   {
     method: "GET",

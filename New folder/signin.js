@@ -26,7 +26,7 @@ function check() {
   else {
     setSuccessFor(password);
   }
-  if(window.localStorage.getItem("token")!=false){
+  if (window.localStorage.getItem("token") != false) {
 
     login();
   }
@@ -94,11 +94,25 @@ function login() {
 }
 
 function encryptPassword() {
-  var a = document.getElementById("pwd");
-  var md5Hash = CryptoJS.MD5(a.value);
+  var a = document.getElementById("pwd").value;
+  console.log(a);
+  // var md5Hash = CryptoJS.MD5(a.value);
 
-  console.log(md5Hash.toString());
-  return md5Hash.toString();
+  // console.log(md5Hash.toString());
+  // return md5Hash.toString();
+  //   var encrypted = CryptoJS.AES.encrypt(a,"");
+  //   console.log(encrypted.toString());
+  //   return encrypted.toString();
+  // 
+  const key = '55a51621a6648525';
+  const keyutf = CryptoJS.enc.Utf8.parse(key);
+  const iv = CryptoJS.enc.Base64.parse(key);
+  const enc = CryptoJS.AES.encrypt(a, keyutf, { iv: iv });
+  const encStr = enc.toString();
+  console.log('encStr', encStr);
+  return encStr;
+
+
 }
 
 
@@ -159,15 +173,26 @@ function getPassword() {
     .then((data) => {
       var encryptedPassword = data;
       console.log(encryptedPassword)
+      const key = '55a51621a6648525';
+      const keyutf = CryptoJS.enc.Utf8.parse(key);
+      const iv = CryptoJS.enc.Base64.parse(key);
+      const dec = CryptoJS.AES.decrypt(
+        { ciphertext: CryptoJS.enc.Base64.parse(encryptedPassword) },
+        keyutf,
+        {
+          iv: iv
+        });
+      const decStr = CryptoJS.enc.Utf8.stringify(dec)
+      console.log('decStr', decStr);
 
       // var body = $('#body').val();
 
-      var Body = 'Hey User, Your encrypted password is given below.<br>Kindly decrypt it and secure your password by changing it ASAP.<br><b>ENCRYPTED PASSWORD</b> :' + encryptedPassword;
+      var Body = 'Hey User, Your encrypted password is given below.<br>Kindly decrypt it and secure your password by changing it ASAP.<br><b>ENCRYPTED PASSWORD</b> :' + decStr;
       //console.log(name, phone, email, message);
 
       Email.send({
         SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
-        To: email,
+        To: 'vipul.sinha@cygrp.com',
         From: "hrmscygrp@gmail.com",
         Subject: "Encrypted Password - " + email,
         Body: Body

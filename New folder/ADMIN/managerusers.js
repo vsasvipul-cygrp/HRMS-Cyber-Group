@@ -15,30 +15,30 @@ function checkInputs() {
     const EmployeeDesg = e.options[e.selectedIndex].text;
     const EmployeeAM = x.options[x.selectedIndex].text;
 
-    if(usernameValue === '') setErrorFor(username, 'Employee Name cannot be blank');
+    if (usernameValue === '') setErrorFor(username, 'Employee Name cannot be blank');
     else {
         setSuccessFor(username);
         if (emailValue === '') setErrorFor(email, 'Email cannot be blank');
-        else if(!isEmail(emailValue)) setErrorFor(email, 'Email is not valid');
+        else if (!isEmail(emailValue)) setErrorFor(email, 'Email is not valid');
         else {
             setSuccessFor(email);
             if (passwordValue === '') setErrorFor(password, 'Password cannot be blank');
-            else if(!isPassword(passwordValue)) setErrorFor(password, 'Minimum 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character');
+            else if (!isPassword(passwordValue)) setErrorFor(password, 'Minimum 8 characters, 1 uppercase & 1 lowercase letter, 1 number & 1 special character');
             else {
                 setSuccessFor(password);
                 if (contactValue === '') setErrorFor(contact, 'Phone Number cannot be blank');
-                else if(!isPhone(contactValue)) setErrorFor(contact, 'Phone Number is not valid');
+                else if (!isPhone(contactValue)) setErrorFor(contact, 'Phone Number is not valid');
                 else {
                     setSuccessFor(contact);
                     if (EmployeeDesg === '' || EmployeeDesg == 'Select Designation') setErrorFor(e, 'Designantion cannot be blank');
                     else {
                         setSuccessFor(e);
                         if (EmployeeAM === '' || EmployeeAM == 'Select Appointed Manager') setErrorFor(x, 'Appointed Manager cannot be blank');
-                        else{
+                        else {
                             setSuccessFor(x);
                             AddEmployee();
                             $('#staticBackdrop').modal('hide')
-                            $('#employeedata').DataTable().ajax.reload();                           
+                            $('#employeedata').DataTable().ajax.reload();
                         }
                     }
                 }
@@ -125,9 +125,12 @@ function AddEmployee() {
 }
 
 function abc() {
-    var a = document.getElementById("emppass");
-    var md5Hash = CryptoJS.MD5(a.value);
-
-    console.log(md5Hash.toString());
-    return md5Hash.toString();
+    var a = document.getElementById("emppass").value;
+    const key = '55a51621a6648525';
+    const keyutf = CryptoJS.enc.Utf8.parse(key);
+    const iv = CryptoJS.enc.Base64.parse(key);
+    const enc = CryptoJS.AES.encrypt(a, keyutf, { iv: iv });
+    const encStr = enc.toString();
+    console.log('encStr', encStr);
+    return encStr;
 }
