@@ -38,7 +38,9 @@ function checkInputs() {
                             setSuccessFor(x);
                             AddEmployee();
                             $('#staticBackdrop').modal('hide')
-                            $('#employeedata').DataTable().ajax.reload();
+                            $('#staticBackdrop').on('hidden.bs.modal', function () {
+                                $(this).find('form').trigger('reset');
+                            })
                         }
                     }
                 }

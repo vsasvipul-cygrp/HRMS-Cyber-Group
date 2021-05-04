@@ -39,9 +39,11 @@ fetch("https://localhost:44315/api/leave/GetWFHLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalWfh").innerHTML;
         const obj = document.getElementById("approvedWfh");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Casual Leave Balance
@@ -78,9 +80,11 @@ fetch("https://localhost:44315/api/leave/GetCLLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalCl").innerHTML;
         const obj = document.getElementById("approvedCl");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Sick Leave Balance
@@ -117,9 +121,11 @@ fetch("https://localhost:44315/api/leave/GetSLLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalSl").innerHTML;
         const obj = document.getElementById("approvedSl");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Earned Leave Balance
@@ -156,9 +162,11 @@ fetch("https://localhost:44315/api/leave/GetELLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalEl").innerHTML;
         const obj = document.getElementById("approvedEl");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Leave Without Pay Balance
@@ -195,9 +203,11 @@ fetch("https://localhost:44315/api/leave/GetLWPLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalLwp").innerHTML;
         const obj = document.getElementById("approvedLwp");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Marital Leave Balance
@@ -234,9 +244,11 @@ fetch("https://localhost:44315/api/leave/GetMLLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalMl").innerHTML;
         const obj = document.getElementById("approvedMl");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 // Bereavement Leave Balance
@@ -273,9 +285,11 @@ fetch("https://localhost:44315/api/leave/GetBLLeaveTable/" + id,
             };
             window.requestAnimationFrame(step);
         }
-        
+
+        const total = document.getElementById("totalBl").innerHTML;
         const obj = document.getElementById("approvedBl");
-        animateValue(obj, 0, c, 500);
+        const remaining = total - c;
+        animateValue(obj, 0, remaining, 500);
     });
 
 
