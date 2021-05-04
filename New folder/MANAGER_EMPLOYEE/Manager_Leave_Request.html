@@ -128,7 +128,7 @@
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
                                 <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>ADMIN</span>
+                                <span id="username">ADMIN</span>
                                 
                             </div>
                             <ul class="pro-body">
@@ -223,7 +223,10 @@
    
    
     
-  
+  <script>
+    var username = localStorage.getItem("Employee-name");
+    document.getElementById("username").innerHTML=username
+  </script>
 <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>

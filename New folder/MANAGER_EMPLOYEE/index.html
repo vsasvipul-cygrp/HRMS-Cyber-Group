@@ -202,7 +202,7 @@
                     class="img-radius"
                     alt="User-Profile-Image"
                   />
-                  <span>John Doe</span>
+                  <span id="username"></span>
                 </div>
                 <ul class="pro-body">
                   <!-- <li>
@@ -602,6 +602,10 @@
         </div>
       </div>
     </div>
+    <script>
+      var username = localStorage.getItem("Employee-name");
+      document.getElementById("username").innerHTML=username
+    </script>
 
     <script src="assets/js/vendor-all.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
