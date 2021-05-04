@@ -1,9 +1,99 @@
 var managername = localStorage.getItem('Manager-name');
-  fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
-    .then(response => response.json())
-    .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
+fetch('https://localhost:44315/api/employee/GetManagerEmailid/' + managername)
+  .then(response => response.json())
+  .then(data => window.localStorage.setItem('managerMail', data[0].emailid));
+getOpenLeaves();
+// ------------------------------------------------------------  
+// --------------------  OPEN LEAVE OF  EMPLOYEEE ------------- 
+// ------------------------------------------------------------  
+function getOpenLeaves() {
+  var f = window.localStorage.getItem("id");
+  fetch("https://localhost:44315/api/Leave/GetOpenedLeaveTable/" + f,
+    {
+      method: "GET",
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer",
+    })
+    //.then(response => response.json())
+    .then((result) => result.json())
 
+    .then((data) => {
+      let li = ``;
+      data.forEach((EmployeeFetch) => {
+        var sdate = `${EmployeeFetch.sdate}`;
+        var yyyy = sdate.slice(0, 4)
+        var mm = sdate.slice(5, 7)
+        var dd = sdate.slice(8, 10)
+        sdate = mm + "/" + dd + "/" + yyyy
+
+        var edate = `${EmployeeFetch.edate}`;
+        var yyyy = edate.slice(0, 4)
+        var mm = edate.slice(5, 7)
+        var dd = edate.slice(8, 10)
+        edate = mm + "/" + dd + "/" + yyyy
+        li += `<tr>               
+       <td>${EmployeeFetch.type}</td>
+       <td>${sdate} </td>               
+       <td>${edate}</td>
+       <td>${EmployeeFetch.status}</td>
+       <td>${EmployeeFetch.amid}</td>                          
+       </tr>`;
+      });
+      document.getElementById("openrequestleave").innerHTML = li;
+    });
+}
+
+// *********************************************
+// ---------------LEAVE VALIDATION ------------- 
+// *********************************************
+
+const form = document.getElementById('form');
+const x = document.getElementById("leavetypeid");
+const startdate = document.getElementById('leavesdate');
+const enddate = document.getElementById('leaveedate');
+const reason = document.getElementById('leavereason');
+
+function checkModal() {
+  const typeLeave = x.options[x.selectedIndex].text;
+  const startdateValue = startdate.value.trim();
+  const enddateValue = enddate.value.trim();
+  const reasonValue = reason.value.trim();
+
+
+  if (typeLeave === '' || typeLeave == 'Select Leave Type') setErrorFor(x, 'This field cannot be blank');
+  else {
+    setSuccessFor(x);
+    if (startdateValue === '') setErrorFor(startdate, 'This field cannot be blank');
+    else {
+      setSuccessFor(startdate);
+      if (enddateValue === '') setErrorFor(enddate, 'This field cannot be blank');
+      else {
+        setSuccessFor(enddate);
+        if (reasonValue === '') setErrorFor(reason, 'This field cannot be blank(MaxLength=200)');
+
+        else {
+          setSuccessFor(reason);
+          AddNewLeave();
+          getOpenLeaves();
+          $('#staticBackdrop').modal('hide')
+          $('#staticBackdrop').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset');
+          })
+        }
+      }
+    }
+  }
+}
+//-------------------------------------------------------------------------------
 // ------------------------ GET LEAVES OF ALL STATUS AND PENDING ----------------- 
+//-------------------------------------------------------------------------------
 
 var f = window.localStorage.getItem("id");
 fetch("https://localhost:44315/api/Leave/Getleavetable/" + f,
@@ -18,13 +108,8 @@ fetch("https://localhost:44315/api/Leave/Getleavetable/" + f,
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer",
   })
-  //.then(response => response.json())
   .then((result) => result.json())
-
   .then((data) => {
-
-
-    console.log("all" + data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
       localStorage.setItem("manager-name", EmployeeFetch.amid)
@@ -39,68 +124,64 @@ fetch("https://localhost:44315/api/Leave/Getleavetable/" + f,
       var mm = edate.slice(5, 7)
       var dd = edate.slice(8, 10)
       edate = mm + "/" + dd + "/" + yyyy
-      li += `<tr>
-              
+      li += `<tr>              
               <td>${EmployeeFetch.type}</td>
               <td>${sdate} </td>              
               <td>${edate}</td>
               <td>${EmployeeFetch.status}</td>
-              <td>${EmployeeFetch.amid}</td>
-                         
+              <td>${EmployeeFetch.amid}</td>                         
               </tr>`;
     });
     document.getElementById("myrequestleave").innerHTML = li;
   });
 
-// --------------------------  OPEN LEAVE OF  EMPLOYEEE --------- 
+function getOpenLeaves() {
+  var f = window.localStorage.getItem("id");
+  console.log(f)
+  fetch("https://localhost:44315/api/Leave/GetOpenedLeaveTable/" + f,
+    {
+      method: "GET",
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer",
+    })
+    //.then(response => response.json())
+    .then((result) => result.json())
 
-fetch("https://localhost:44315/api/Leave/GetOpenedLeaveTable/" + f,
-  {
-    method: "GET",
-    mode: "cors", // no-cors, *cors, same-origin
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: "follow", // manual, *follow, error
-    referrerPolicy: "no-referrer",
-  })
-  //.then(response => response.json())
-  .then((result) => result.json())
+    .then((data) => {
+      let li = ``;
+      data.forEach((EmployeeFetch) => {
+        var sdate = `${EmployeeFetch.sdate}`;
+        var yyyy = sdate.slice(0, 4)
+        var mm = sdate.slice(5, 7)
+        var dd = sdate.slice(8, 10)
+        sdate = mm + "/" + dd + "/" + yyyy
 
-  .then((data) => {
-
-
-    console.log("open" + data);
-    let li = ``;
-    data.forEach((EmployeeFetch) => {
-      var sdate = `${EmployeeFetch.sdate}`;
-      var yyyy = sdate.slice(0, 4)
-      var mm = sdate.slice(5, 7)
-      var dd = sdate.slice(8, 10)
-      sdate = mm + "/" + dd + "/" + yyyy
-
-      var edate = `${EmployeeFetch.edate}`;
-      var yyyy = edate.slice(0, 4)
-      var mm = edate.slice(5, 7)
-      var dd = edate.slice(8, 10)
-      edate = mm + "/" + dd + "/" + yyyy
-      li += `<tr>
-               
-               <td>${EmployeeFetch.type}</td>
-               <td>${sdate} </td>               
-               <td>${edate}</td>
-               <td>${EmployeeFetch.status}</td>
-               <td>${EmployeeFetch.amid}</td>
-                          
-               </tr>`;
+        var edate = `${EmployeeFetch.edate}`;
+        var yyyy = edate.slice(0, 4)
+        var mm = edate.slice(5, 7)
+        var dd = edate.slice(8, 10)
+        edate = mm + "/" + dd + "/" + yyyy
+        li += `<tr>               
+     <td>${EmployeeFetch.type}</td>
+     <td>${sdate} </td>               
+     <td>${edate}</td>
+     <td>${EmployeeFetch.status}</td>
+     <td>${EmployeeFetch.amid}</td>                          
+     </tr>`;
+      });
+      document.getElementById("openrequestleave").innerHTML = li;
     });
-    document.getElementById("openrequestleave").innerHTML = li;
-  });
-
+}
+//-------------------------------------------------------------------
 // ------------------------- CLOSED LEAVE OF EMPLOYEE --------------- 
+//-------------------------------------------------------------------
 
 fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
   {
@@ -119,7 +200,6 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
   .then((result) => result.json())
 
   .then((data) => {
-    console.log("closed" + data);
     let li = ``;
     data.forEach((EmployeeFetch) => {
       var sdate = `${EmployeeFetch.sdate}`;
@@ -133,19 +213,32 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
       var mm = edate.slice(5, 7)
       var dd = edate.slice(8, 10)
       edate = mm + "/" + dd + "/" + yyyy
-      li += `<tr>
-                
+      li += `<tr>                
                 <td>${EmployeeFetch.type}</td>
                 <td>${sdate} </td>               
                 <td>${edate}</td>
                 <td>${EmployeeFetch.status}</td>
-                <td>${EmployeeFetch.amid}</td>
-                           
+                <td>${EmployeeFetch.amid}</td>                           
                 </tr>`;
     });
     document.getElementById("closerequestleave").innerHTML = li;
   });
 
+
+//**********************************
+// VALIDATION FUNCTIONS
+//**********************************
+
+function setErrorFor(input, message) {
+  const formCtrl = input.parentElement;
+  const small = formCtrl.querySelector('small');
+  small.innerText = message;
+  formCtrl.className = 'form-ctrl error';
+}
+function setSuccessFor(input) {
+  const formCtrl = input.parentElement; //.form-control
+  formCtrl.className = 'form-ctrl success';
+}
 
 
 // *********************************************
@@ -153,7 +246,6 @@ fetch("https://localhost:44315/api/Leave/GetClosedLeaveTable/" + f,
 // *********************************************
 
 function AddNewLeave() {
-  
   var x = document.getElementById("leavetypeid");
   var Leavetype = x.options[x.selectedIndex].text;
   var leavetypeId;
@@ -193,17 +285,11 @@ function AddNewLeave() {
       referrerPolicy: "no-referrer",
       body: JSON.stringify(leave),
     })
-
-  console.log("New Leave Added");
-
-
-
   var sd = $('#leavesdate').val();
   var ed = $('#leaveedate').val();
   var managerMail = localStorage.getItem('managerMail')
   var employeeName = localStorage.getItem('Employee-name')
   var reason = $('#leavereason').val();
-  console.log(managerMail)
 
   var Body = 'Hi ' + managername + ', <br> ' + employeeName + ' has requested a leave from ' + sd + ' to ' + ed + ' reason being ' + reason + "." + '<br>Please respond accordingly.';
 
@@ -218,19 +304,17 @@ function AddNewLeave() {
       if (message == 'OK') {
         swal({
           icon: 'success',
-          //  title: 'Oops...',
           text: 'Leave Applied Successfully',
-            
-         });
+        });
       }
       else {
         console.error(message);
         swal({
           icon: 'error',
-           title: 'Oops...',
+          title: 'Oops...',
           text: 'Leave Failed',
-            
-         });
+
+        });
 
       }
 

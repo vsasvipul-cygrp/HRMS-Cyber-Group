@@ -25,10 +25,67 @@
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="./table.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"> -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+  
+  
+  /* .form{
+    padding: 30px 40px;
+  } */
+  .form-ctrl{
+    margin-bottom: 10px; 
+   padding-bottom: 20px;
+    position: relative;
+  }
+  .form-ctrl label{
+    display: inline-block;
+    /* margin-bottom: 5px; */
+  }
+  .form-ctrl input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+  .form-ctrl.success input{
+    border-color: #2ecc71;
+  }
+  .form-ctrl.error input{
+    border-color: #e74c3c;
+  }
+  
+  .form-ctrl i{
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+  }
+  .form-ctrl.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+  }
+  .form-ctrl.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;  
+  }
+  .form-ctrl small{
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .form-ctrl.error small {
+    color: #e74c3c;
+    visibility: visible;  
+  }
+  
+      </style>
+  
+  
 
 
 
@@ -198,21 +255,13 @@
                                 <form class="well form-horizontal" action=" " method="post"  id="contact_form">
                                   <fieldset>
                                   
-                                 
-                                  
-                            
-                                 
-                                  
-                                
-                                  
-                                 
-                                  
+        
                                   
                             <div class="form-group"> 
-                                    <label class="col-md-8 control-label">Type</label>
+                                    <label class="col-md-8 control-label">Select Leave Type</label>
                                       <div class="col-md-8 selectContainer">
-                                      <div class="input-group">
-                                          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                      <div class="input-group form-ctrl">
+                                          <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span> -->
                                       <select id="leavetypeid" name="department" class="form-control selectpicker">
                                         <option value="">Select Leave Type</option>
                                         <option>Work From Home</option>
@@ -224,41 +273,45 @@
                                         <option>Bereavement Leave</option>
                                       
                                       </select>
+                                      <i class="fas fa-check-circle"></i>
+                                      <i class="fas fa-exclamation-circle"></i>
+                                      <small>Error message</small>
                                     </div>
                                   </div>
                                   </div>
 
-                                  <div class="form-group">
+                                  <div class="form-group form-ctrl">
                                     <label class="col-md-8 control-label">Start Date</label>  
                                     <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                    <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
-                                    <!-- <input  type="date" placeholder="Date" class="form-control"  type="text"> -->
-                                
-                                     <input type="date" id="leavesdate" class="form-control" name="trip-start">
-                                     <!-- min="2021-01-01" max="2021-12-31" -->
+                                    <div class="input-group"><input type="date" id="leavesdate" class="form-control" name="trip-start">
+                                     <i class="fas fa-check-circle"></i>
+                                     <i class="fas fa-exclamation-circle"></i>
+                                     <small>Error message</small>
                                      
                                       </div>
                                     </div>
                                   </div>
                                   
-                                  <div class="form-group">
+                                  <div class="form-group form-ctrl">
                                     <label class="col-md-8 control-label">End Date</label>  
                                     <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                    <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> -->
-                                    <!-- <input  name="first_name" placeholder="Date" class="form-control"  type="text"> -->
-                                     <input type="date" id="leaveedate" class="form-control" name="trip-start">
+                                    <div class="input-group"><input type="date" id="leaveedate" class="form-control" name="trip-start">
+                                     <i class="fas fa-check-circle"></i>
+                                     <i class="fas fa-exclamation-circle"></i>
+                                     <small>Error message</small>
                                       </div>
                                     </div>
                                   </div>
                                     
-                                  <div class="form-group"> 
+                                  <div class="form-group form-ctrl"> 
                                     <label class="col-md-8 control-label">Reason</label>
                                       <div class="col-md-8 selectContainer">
                                       <div class="input-group">
                                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                          <input id="leavereason" type="textarea" name="reason" placeholder="Enter your Reason" class="form-control"  type="text">
+                                          <input id="leavereason" type="textarea" name="reason" placeholder="Enter your Reason" class="form-control"  type="text"maxlength="200">
+                                          <i class="fas fa-check-circle"></i>
+                                          <i class="fas fa-exclamation-circle"></i>
+                                          <small>Error message</small>
                                     </div>
                                   </div>
                                   </div>          
@@ -266,8 +319,7 @@
                                   </form>
                               </div>
                               <div class="modal-footer">
-                                <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="AddNewLeave()">Raise Request</button>
+                                <button type="button" class="btn btn-secondary"  onclick="checkModal()">Raise Request</button>
                               </div>
                             </div>
                           </div>
@@ -302,11 +354,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="myrequestleave">
-                                               
 
-                                                
-
-                    
                                             </tbody>
                                         </table>
 
@@ -320,7 +368,7 @@
                                                     <!-- <th>Requested On</th> -->
                                                     <th scope="col">Start Date</th>
                                                     <th scope="col">End Date</th>
-                                                    <!-- <th>No. Of Days</th> -->
+                                                    <!-- <th scope="col">No. Of Days</th> -->
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Request Sent To </th>
                                                     
