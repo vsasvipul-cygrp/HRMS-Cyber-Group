@@ -12543,23 +12543,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nitish.sharma\\.nuget\\packages\\": {},
+    "C:\\Users\\vipul.sinha\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nitish.sharma\\source\\repos\\HRMS\\HRMS\\HRMS.csproj",
+      "projectUniqueName": "C:\\Users\\vipul.sinha\\source\\repos\\HRMS\\HRMS\\HRMS.csproj",
       "projectName": "HRMS",
-      "projectPath": "C:\\Users\\nitish.sharma\\source\\repos\\HRMS\\HRMS\\HRMS.csproj",
-      "packagesPath": "C:\\Users\\nitish.sharma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nitish.sharma\\source\\repos\\HRMS\\HRMS\\obj\\",
+      "projectPath": "C:\\Users\\vipul.sinha\\source\\repos\\HRMS\\HRMS\\HRMS.csproj",
+      "packagesPath": "C:\\Users\\vipul.sinha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vipul.sinha\\source\\repos\\HRMS\\HRMS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\nitish.sharma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vipul.sinha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

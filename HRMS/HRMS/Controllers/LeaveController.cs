@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HRMS.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Controllers
 {
@@ -29,7 +30,7 @@ namespace HRMS.Controllers
                      select new
                      {
                          od.Id,
-                         od.Empname,                    
+                         od.Empname,
                          pd.Sdate,
                          pd.Edate,
                          pd.Reason,
@@ -63,17 +64,20 @@ namespace HRMS.Controllers
 
             var q = (from pd in _context.Leave
                      join od in _context.Employee on pd.Id equals od.Id
+                     join td in _context.TypeInfo on pd.Typeid equals td.Typeid
                      where (od.Amid == id && pd.Status == "Pending")
                      select new
                      {
-                         od.Empname,
-                         od.Amid,
                          pd.Id,
+
+                         od.Empname,
                          pd.Sdate,
                          pd.Edate,
                          pd.Reason,
                          pd.Status,
+                         td.Type,
                          pd.Typeid,
+                         pd.Leaveid
 
                      }).ToList();
 
@@ -249,8 +253,85 @@ namespace HRMS.Controllers
             return Ok(q);
         }
 
+        // LEAVE BALANCE DETAILS API's
+
+        [HttpGet]
+        [Route("GetWFHLeaveTable/{id}")]
+        // [System.Data.Entity.DbFunction("Edm", "DiffDays")]
+        public ActionResult GetWFHLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 1
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetCLLeaveTable/{id}")]
+
+        public ActionResult GetCLLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 2
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetSLLeaveTable/{id}")]
+
+        public ActionResult GetSLLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 3
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
 
 
+        [HttpGet]
+        [Route("GetELLeaveTable/{id}")]
+
+        public ActionResult GetELLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 4
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetLWPLeaveTable/{id}")]
+
+        public ActionResult GetLWPLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 5
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetMLLeaveTable/{id}")]
+
+        public ActionResult GetMLLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 6
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetBLLeaveTable/{id}")]
+
+        public ActionResult GetBLLeaveByEmId(int id) //GetLeaveByEmId  
+        {
+            var result = (from dd in _context.Leave
+                          where dd.Id == id && dd.Status == "Approved" && dd.Typeid == 7
+                          select new { days = EF.Functions.DateDiffDay(dd.Sdate, dd.Edate) });
+            return Ok(result);
+        }
     }
 }
 

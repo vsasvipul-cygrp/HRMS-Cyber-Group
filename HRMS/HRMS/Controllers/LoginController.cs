@@ -26,19 +26,44 @@ namespace HRMS.Controllers
             _context = context;
             _config = config;
         }
+        //[AllowAnonymous]
+        //[HttpPost]
+        //public string Login([FromBody]Employee login)
+        // {
+        //    IActionResult response = Unauthorized();
+        //    var user = AuthenticateUser(login);
+        //     if (user != null)
+        //     {
+        //         var tokenString = GenerateJSONWebToken(user);
+        //        return tokenString;
+        //    }
+
+        //    return "false";
+        //}
         [AllowAnonymous]
         [HttpPost]
-        public string Login([FromBody]Employee login)
+        public LoginResponse employeeLogin([FromBody] Employee userInfo)
         {
-            IActionResult response = Unauthorized();
-            var user = AuthenticateUser(login);
-            if (user != null)
-            {
-                var tokenString = GenerateJSONWebToken(user);
-                return tokenString;
-            }
+            var employeeInfo = AuthenticateUser(userInfo);
 
-            return "false";
+            if (employeeInfo != null)
+            {
+                var TokenString = GenerateJSONWebToken(employeeInfo);
+
+                var queryRole = _context.Employee
+                            .Where(v => v.Emailid == userInfo.Emailid)
+                            .Select(v => v.Role).ToList();
+                int role = queryRole[0];
+
+                var queryId = _context.Employee
+                            .Where(v => v.Emailid == userInfo.Emailid)
+                            .Select(v => v.Id).ToList();
+                int id = queryId[0];
+
+
+                return new LoginResponse(id, TokenString, role);
+            }
+            return new LoginResponse(0, "false", 0);
         }
         [HttpGet]
         public ActionResult GetLoginFeed()

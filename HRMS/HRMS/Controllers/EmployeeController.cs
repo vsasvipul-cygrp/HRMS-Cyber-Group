@@ -23,7 +23,19 @@ namespace HRMS.Controllers
         [HttpGet]
         public ActionResult AllEmployees()
         {
-            var employee = _context.Employee.ToList();
+            var employee = (from a in _context.Employee
+                            orderby a.Role ascending
+                            select new
+                            {
+                                a.Id,
+                                a.Empname,
+                                a.Emailid,
+                                a.Password,
+                                a.Desg,
+                                a.Contact,
+                                a.Amid,
+                                a.Role
+                            }).ToList();
             return Ok(employee);
 
         }
@@ -46,10 +58,28 @@ namespace HRMS.Controllers
             var result = (from a in _context.Employee
                           where a.Empname == Amid select new {a.Emailid});
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetEmployeeName")]
+        //Route("{id}")]
+        public ActionResult GetName() //GetLeaveByAmId
+        {
+            var result = (from a in _context.Employee
+                          orderby a.Role ascending
+                          select new { a.Empname });
+            return Ok(result);
+        }
 
 
 
-
+        [HttpGet]
+        [Route("GetEmpid/{name}")]
+        //Route("{id}")]
+        public ActionResult Getid(string name)
+        {
+            var employee1 = _context.Employee.FirstOrDefault(EmployeeInfo => EmployeeInfo.Empname == name);
+            return Ok(employee1.Id);
         }
 
 
@@ -93,6 +123,21 @@ namespace HRMS.Controllers
          var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
            return Ok(emp.Role);
        }
+        [Route("forgot/{email}")]
+        [HttpGet()]
+        public ActionResult forgetpassword(string email)
+        {
+            var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
+            
+            if (emp != null)
+            {
+                return Ok(emp.Password);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 
