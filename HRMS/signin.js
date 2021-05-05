@@ -192,7 +192,7 @@ function getPassword() {
 
       Email.send({
         SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
-        To: 'vipul.sinha@cygrp.com',
+        To: email,
         From: "hrmscygrp@gmail.com",
         Subject: "Encrypted Password - " + email,
         Body: Body
@@ -200,11 +200,22 @@ function getPassword() {
         message => {
           //console.log (message);
           if (message == 'OK') {
-            alert('Your mail has been send. Thank you for connecting.');
+            swal({
+              icon: 'success',
+              // title: 'Login successful',
+              text: 'Your mail has been send. Thank you for connecting.',
+    
+            });
+            // alert('Your mail has been send. Thank you for connecting.');
           }
           else {
             console.error(message);
-            alert('There is error at sending message. ')
+            swal({
+              icon: 'error',
+              text: 'There is error at sending message',
+    
+            });
+            // alert('There is error at sending message. ')
 
           }
 
