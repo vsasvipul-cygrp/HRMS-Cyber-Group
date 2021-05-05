@@ -7274,74 +7274,151 @@ select.form-control-lg:not([size]):not([multiple]) {
 /**  =====================
       Data Tables css start
 ==========================  **/
-.table td,
-.table th {
+
+table {
+
   border-top: 1px solid #eaeaea;
+
+  margin: 0;
+  padding: 0;
+  width: 80%;
+  table-layout: fixed;
+}
+
+
+
+table th,
+table td {
+
+  border-top: 1px solid #eaeaea;
+  text-align: center;
   white-space: nowrap;
   padding: 1.05rem 0.75rem;
 }
-.table thead th {
-  border-bottom: 1px solid #eaeaea;
-}
-.table tbody + tbody {
-  border-top: 2px solid #eaeaea;
-}
 
-/* Border versions */
-.table-bordered {
-  border: 1px solid #eaeaea;
+table th {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
-.table-bordered td,
-.table-bordered th {
-  border: 1px solid #eaeaea;
-}
-
 /* Zebra-striping */
 .table-striped tbody tr:nth-of-type(2n+1) {
   background-color: rgba(4, 169, 245, 0.05);
 }
 
-/* Hover effect */
-.table-hover tbody tr:hover {
-  background-color: rgba(4, 169, 245, 0.05);
-}
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
 
-/* Table backgrounds */
-.table .thead-dark th {
-  color: #fff;
-  background-color: #37474f;
-  border-color: #222c31;
-}
+  table caption {
+    font-size: 1.3em;
+  }
 
-.table-dark {
-  color: #fff;
-  background-color: #37474f;
-}
-.table-dark td,
-.table-dark th,
-.table-dark thead th {
-  border-color: #222c31;
-}
-.table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #334249;
-}
-.table-dark.table-hover tbody tr:hover {
-  background-color: #2d3940;
-}
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
 
-/* fixed header position */
-table.dataTable.fixedHeader-floating {
-  top: 0 !important;
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
 @media screen and (max-width: 992px) {
-  table.dataTable.fixedHeader-floating {
+  .fixedHeader-locked {
     display: none !important;
   }
 }
 
-@media screen and (max-width: 992px) {
-  .fixedHeader-locked {
-    display: none !important;
+/* Media Query */
+@media screen and (max-width: 767px) {
+  /* tablet */
+  .offset:before {
+    display: block;
+    /* content: ""; */
+    height: 3rem;
+  }
+
+  .navbar {
+    letter-spacing: 0.1rem;
+    padding: 10px 0;
+  }
+
+  .heading-content {
+    position: absolute;
+    top: 15%;
+  }
+
+  .heading-content h5 {
+    font-size: 3em;
+  }
+
+  .heading-content h1 {
+    font-size: 3em;
+  }
+
+  .heading-content h2 {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  /* Phone */
+  .offset:before {
+    display: block;
+    /* content: ""; */
+    height: 3rem;
+  }
+  .navbar {
+    letter-spacing: 0.05rem;
+    padding: 7px 0;
+  }
+
+  .heading-content {
+    position: absolute;
+    top: 9%;
+  }
+
+  .heading-content h5 {
+    font-size: 2em;
+  }
+
+  .heading-content h1 {
+    font-size: 2em;
+  }
+
+  .heading-content h2 {
+    font-size: 0.7em;
   }
 }
 /**  =====================
