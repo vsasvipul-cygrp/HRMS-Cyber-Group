@@ -381,16 +381,139 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="update2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="update2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="update2Label">Update Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <form class="form" id="contact_form">
+        <!-- <form class="well form-horizontal" action=" " method="post"  id="contact_form"> -->
+      
+          
+         
+          <!-- Text input-->
+        
+          <div class="form-ctrl">
+            <!-- <label>Employee Name</label> -->
+            <input  name="first_name" id="emp_name" placeholder="Employee Name" class="form-control"  type="text">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+         
+          
+          <!-- Text input-->
+          <div class="form-ctrl">
+            <!-- <label>Email</label> -->
+            <input name="last_name" id="emp_emailid" placeholder="Email Id" class="form-control"  type="text">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          
+          <div class="form-ctrl">
+              
+            <select id="emp_desg" name="department" class="form-control selectpicker" onclick="checkDesg()">
+              <option value="">Select Designation</option>
+              <option>Manager</option>
+              <option>Employee</option>
+              
+
+            </select>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+              <small>Error message</small>
+
+          </div>
+      
+          <div class="form-ctrl">
+              <!-- <label>Contact Number</label> -->
+              <input name="contact_no" id="emp_contact" placeholder="(+91)" class="form-control" type="text">
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+              <small>Error message</small>
+            </div>
+        
+            <div class="form-ctrl">
+              <select id="manager_namelist" name="department" class="form-control selectpicker">
+                <option  value="">Select Appointed Manager</option>
+                   
+              </select>
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+
+            <div class="form-ctrl">
+              <select id="activeList" name="department" class="form-control selectpicker">
+                <option  value="">Select Status</option>
+                <option  value="">Active</option>
+                <option  value="">Inactive</option>
+                   
+              </select>
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+       
+      </form>         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="update();" data-dismiss="modal" >Update Employee</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
               </div>
                   </div><!-- /.container -->
                   <!-- [ Hover-table ] start -->
-                  <div class="col-xl-12">
-                    <div class="card">
-                      <div class="card-header">
-                        <h5>Employees</h5>
-                      </div>
-                      <div class="card-block table-border-style">
-                        <div class="table-responsive">
+
+
+
+                  <div class="col-xl-12 col-md-12 m-b-30">
+                    
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Current Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Former Employees</a>
+                        </li>
+                       
+                    </ul>  
+                 
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade active show" id="home" role="tabpanel" >
+                          
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th>Employee Name</th>
+                                  <th>Email Id</th>
+                                  <th>Designation</th>
+                                  <th>Contact</th>
+                                  <th>Appointed Manager</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody id="currentemployeedata">
+                               
+                              </tbody>
+                            </table>
+                                 
+                           
+
+                        </div>
+                        <div class="tab-pane fade " id="profile" role="tabpanel" >
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -399,18 +522,25 @@
                                 <th>Designation</th>
                                 <th>Contact</th>
                                 <th>Appointed Manager</th>
-                                <th>Status</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
-                            <tbody id="employeedata">
+                            <tbody id="pastemployeedata">
                              
                             </tbody>
                           </table>
+
                         </div>
-                      </div>
+                   
                     </div>
-                  </div>
+                </div>
+
+
+
+
+
+
+                  
                   <!-- [ Hover-table ] end -->
                
                 <!-- [ Main Content ] end -->

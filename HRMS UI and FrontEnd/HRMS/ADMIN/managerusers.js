@@ -23,35 +23,119 @@ function EmployeeFetchData() {
                     <td>${e.desg}</td>
                     <td>${e.contact}</td>
                     <td>${e.amid}</td>    
-                    <td>${e.isActive}</td>  
-                    <td> <a href="#!" onclick="changeStatus(${e.id},'${e.empname}','${e.emailid}','${e.password}','${e.desg}','${e.contact}','${e.amid}',${e.role},'${e.isActive}')" class="label theme-bg text-white f-12 rounded">Change Status</a></td>         
+                   
+                    <td> <a href="#!" onclick="changeStatus(${e.id},'${e.empname}','${e.emailid}','${e.password}','${e.desg}','${e.contact}','${e.amid}',${e.role},'${e.isActive}')" class="label theme-bg text-white f-12 rounded" data-toggle="modal" data-target="#update2" >Update </a></td>         
                                        
                   </tr>`;
             });
-            document.getElementById("employeedata").innerHTML = li;
+            document.getElementById("currentemployeedata").innerHTML = li;
         })
         .catch(function (error) {
             console.log("Looks like there was a problem: \n", error);
         });
+
+
+// Past employyeee data
+fetch("https://localhost:44315/api/employee/past", {
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer",
+})
+    .then((res) => res.json())
+    .then((data) => {
+        let li = ``;
+        data.forEach((e) => {
+            li += `<tr>                  
+                <td>${e.empname}</td>
+                <td>${e.emailid} </td>
+                <td>${e.desg}</td>
+                <td>${e.contact}</td>
+                <td>${e.amid}</td>    
+               
+                <td> <a href="#!" onclick="changeStatus(${e.id},'${e.empname}','${e.emailid}','${e.password}','${e.desg}','${e.contact}','${e.amid}',${e.role},'${e.isActive}')" class="label theme-bg text-white f-12 rounded" data-toggle="modal" data-target="#update2" >Update </a></td>                                    
+              </tr>`;
+        });
+        document.getElementById("pastemployeedata").innerHTML = li;
+    })
+    .catch(function (error) {
+        console.log("Looks like there was a problem: \n", error);
+    });
+
+
+
+
+
+
+
+
 }
 
+//var e,x,y,EmployeeDesg,Amid,Active;
+
 function changeStatus(id, name, email, pwd, des, contact, amid, role, status) {
-    console.log(id);
-    let newStatus;
-    if (status == "Active") newStatus = "InActive"
-    else newStatus = "Active"
-    var Employee = {
+    window.localStorage.setItem("PatchID",id);
+    console.log(contact);
+    document.getElementById("emp_name").value=name;
+   document.getElementById("emp_emailid").value=email;
+   document.getElementById("emp_contact").value=contact;
+   
+
+   
+
+   
+    // let newStatus;
+    // if (status == "Active") newStatus = "InActive"
+    // else newStatus = "Active"
+    //
+
+    //window();
+
+    //window.open('./manage_users.html','_self')
+
+
+}
+function update()
+{
+    var name=document.getElementById("emp_name").value;
+    var emailid=document.getElementById("emp_emailid").value;
+    var contact=document.getElementById("emp_contact").value;
+    var id=window.localStorage.getItem("PatchID");
+    
+
+
+   const e = document.getElementById("emp_desg");
+   const EmployeeDesg = e.options[e.selectedIndex].text;
+   const x = document.getElementById("manager_namelist");
+   const  Amid = x.options[x.selectedIndex].text;
+    const y = document.getElementById("activeList");
+    const Active = y.options[y.selectedIndex].text;
+   
+var role;
+if(EmployeeDesg=="Manager"){
+    role=2;
+}
+else{
+
+    role=3;
+}
+var Employee = {
         "empname": name,
-        "emailid": email,
-        "password": pwd,
-        "desg": des,
+        "emailid": emailid,
+        "desg": EmployeeDesg,
         "contact": contact,
-        "amid": amid,
+        "amid": Amid,
         "role": role,
-        "isActive": newStatus
+        "isActive": Active
     };
+    console.log(Employee);
     fetch("https://localhost:44315/api/employee/" + id.toString(), {
-        method: "PUT",
+        method: "PATCH",
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, *same-origin, omit
@@ -68,11 +152,7 @@ function changeStatus(id, name, email, pwd, des, contact, amid, role, status) {
             console.log(result);
             EmployeeFetchData();
 
-        });
-
-    //window();
-
-    //window.open('./manage_users.html','_self')
+     });
 
 
 }
@@ -137,6 +217,10 @@ function clearModal() {
         $(this).find('form').trigger('reset');
     })
 }
+
+
+
+
 // ****************************************************
 // *************ADD USER FORM VALIDATION****************
 // ****************************************************
