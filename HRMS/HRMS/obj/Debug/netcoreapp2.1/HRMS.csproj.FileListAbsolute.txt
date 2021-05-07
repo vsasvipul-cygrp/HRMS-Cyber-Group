@@ -12,17 +12,17 @@ C:\Users\nitish.sharma\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.Assem
 C:\Users\nitish.sharma\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorTargetAssemblyInfo.cache
 C:\Users\nitish.sharma\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.dll
 C:\Users\nitish.sharma\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.pdb
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.deps.json
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.runtimeconfig.json
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.runtimeconfig.dev.json
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.dll
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.pdb
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.csprojAssemblyReference.cache
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.csproj.CoreCompileInputs.cache
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorAssemblyInfo.cache
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorAssemblyInfo.cs
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.AssemblyInfoInputs.cache
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.AssemblyInfo.cs
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorTargetAssemblyInfo.cache
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.dll
-C:\Users\vipul.sinha\source\repos\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.pdb
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.deps.json
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.runtimeconfig.json
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.runtimeconfig.dev.json
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.dll
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\bin\Debug\netcoreapp2.1\HRMS.pdb
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.csprojAssemblyReference.cache
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.csproj.CoreCompileInputs.cache
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorAssemblyInfo.cache
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorAssemblyInfo.cs
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.AssemblyInfoInputs.cache
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.AssemblyInfo.cs
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.RazorTargetAssemblyInfo.cache
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.dll
+C:\Users\mayank.aggarwal\Desktop\100% Working Software Programs\HRMS\HRMS\obj\Debug\netcoreapp2.1\HRMS.pdb

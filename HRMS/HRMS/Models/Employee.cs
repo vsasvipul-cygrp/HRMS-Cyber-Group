@@ -18,8 +18,13 @@ namespace HRMS.Models
         public string Contact { get; set; }
         public string Amid { get; set; }
         public int Role { get; set; }
+        public string IsActive { get; set; }
 
         public ICollection<Leave> Leave { get; set; }
-        
+
+        internal void ApplyTo(Employee employeeInfo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

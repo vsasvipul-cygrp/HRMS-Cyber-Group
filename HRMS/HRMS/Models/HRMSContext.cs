@@ -33,6 +33,11 @@ namespace HRMS.Models
         {
             modelBuilder.Entity<Employee>(entity =>
             {
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Amid)
                     .IsRequired()
                     .HasMaxLength(255)

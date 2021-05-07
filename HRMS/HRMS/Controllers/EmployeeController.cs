@@ -24,7 +24,9 @@ namespace HRMS.Controllers
         public ActionResult AllEmployees()
         {
             var employee = (from a in _context.Employee
+                            where a.IsActive == "Active" && a.Id != 1
                             orderby a.Role ascending
+
                             select new
                             {
                                 a.Id,
@@ -34,7 +36,32 @@ namespace HRMS.Controllers
                                 a.Desg,
                                 a.Contact,
                                 a.Amid,
-                                a.Role
+                                a.Role,
+                                a.IsActive
+                            }).ToList();
+            return Ok(employee);
+
+        }
+
+        [HttpGet]
+        [Route("past")]
+        public ActionResult InactiveEmployees()
+        {
+            var employee = (from a in _context.Employee
+                            where a.IsActive == "InActive"
+                            orderby a.Role ascending
+
+                            select new
+                            {
+                                a.Id,
+                                a.Empname,
+                                a.Emailid,
+                                a.Password,
+                                a.Desg,
+                                a.Contact,
+                                a.Amid,
+                                a.Role,
+                                a.IsActive
                             }).ToList();
             return Ok(employee);
 
@@ -56,7 +83,8 @@ namespace HRMS.Controllers
         public ActionResult GetManagerEmailid(string Amid) //GetLeaveByAmId  
         {
             var result = (from a in _context.Employee
-                          where a.Empname == Amid select new {a.Emailid});
+                          where a.Empname == Amid
+                          select new { a.Emailid });
             return Ok(result);
         }
 
@@ -109,8 +137,8 @@ namespace HRMS.Controllers
         [HttpGet("{email}")]
         public ActionResult EmployeeById(string email)
         {
-        var emp = _context.Employee.FirstOrDefault(employee=>employee.Emailid == email);
-        return Ok(emp.Id);
+            var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
+            return Ok(emp.Id);
         }
 
 
@@ -118,17 +146,17 @@ namespace HRMS.Controllers
         //GET: api/Employee/5
         [Route("getrole/{email}")]
         [HttpGet()]
-       public ActionResult RoleByEmail(string email)
+        public ActionResult RoleByEmail(string email)
         {
-         var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
-           return Ok(emp.Role);
-       }
+            var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
+            return Ok(emp.Role);
+        }
         [Route("forgot/{email}")]
         [HttpGet()]
         public ActionResult forgetpassword(string email)
         {
             var emp = _context.Employee.FirstOrDefault(employee => employee.Emailid == email);
-            
+
             if (emp != null)
             {
                 return Ok(emp.Password);
@@ -155,23 +183,38 @@ namespace HRMS.Controllers
 
 
         // PUT: api/Employee/5 UpdateEmployee
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public ActionResult UpdateEmployee(int id, [FromBody] Employee employeeRequest)
         {
             Employee employeeInfo = _context.Employee.FirstOrDefault(e => e.Id == id);
             employeeInfo.Empname = employeeRequest.Empname;
             employeeInfo.Emailid = employeeRequest.Emailid;
-            employeeInfo.Password = employeeRequest.Password;
+            //employeeInfo.Password = employeeRequest.Password;
             employeeInfo.Desg = employeeRequest.Desg;
             employeeInfo.Contact = employeeRequest.Contact;
             employeeInfo.Amid = employeeRequest.Amid;
             employeeInfo.Role = employeeRequest.Role;
+            employeeInfo.IsActive = employeeRequest.IsActive;
+
 
 
 
 
 
             _context.Employee.Update(employeeInfo);
+            //employeeRequest.ApplyTo(employeeInfo);
+            _context.SaveChanges();
+            return Ok(employeeInfo);
+        }
+        [Route("pwd/{email}")]
+        [HttpPatch]
+        public ActionResult UpdatePassword(string email, [FromBody] Employee employeeRequest)
+        {
+            Employee employeeInfo = _context.Employee.FirstOrDefault(e => e.Emailid == email);
+            
+            employeeInfo.Password = employeeRequest.Password;
+            _context.Employee.Update(employeeInfo);
+            //employeeRequest.ApplyTo(employeeInfo);
             _context.SaveChanges();
             return Ok(employeeInfo);
         }

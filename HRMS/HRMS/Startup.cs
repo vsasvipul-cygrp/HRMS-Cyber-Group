@@ -48,7 +48,7 @@ namespace HRMS
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<HRMSContext>(o => o.UseSqlServer("server =CYG466; database = HRMS; Trusted_Connection = True; "));
+            services.AddDbContext<HRMSContext>(o => o.UseSqlServer("server =CYG223; database = HRMS; Trusted_Connection = True; "));
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                                                                     .AllowAnyMethod()
                                                                      .AllowAnyHeader()));
