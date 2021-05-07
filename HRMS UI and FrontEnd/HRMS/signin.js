@@ -2,14 +2,7 @@ function check() {
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
 
-  if (emailValue === '' && passwordValue === '') {
-    swal({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Incomplete credentials.',
-
-    });
-  }
+ 
   if (emailValue === '') {
     setErrorFor(email, 'Email cannot be blank');
   }
@@ -81,13 +74,36 @@ function login() {
 
         });
 
-      } else {
-        // swal({
-        //   icon: 'error',
-        //    title: 'User not found!',
-        //   text: 'Try Again!',
+      } else if (email.value === '' && password.value === '') {
+        swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Incomplete credentials',
+    
+        });
+      } else if (email.value === '' && password.value != '') {
+        swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'E-mail Required.',
+    
+        });
+      } else if (email.value != '' && password.value === '') {
+        swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Password Required.',
+    
+        });
+      }
+      else {
+     
+        swal({
+        icon: 'error',
+          title: 'Invalid Credentials',
+         text: 'Try Again!',
 
-        //  });
+         });
       }
     });
 
@@ -96,14 +112,6 @@ function login() {
 function encryptPassword() {
   var a = document.getElementById("pwd").value;
   console.log(a);
-  // var md5Hash = CryptoJS.MD5(a.value);
-
-  // console.log(md5Hash.toString());
-  // return md5Hash.toString();
-  //   var encrypted = CryptoJS.AES.encrypt(a,"");
-  //   console.log(encrypted.toString());
-  //   return encrypted.toString();
-  // 
   const key = '55a51621a6648525';
   const keyutf = CryptoJS.enc.Utf8.parse(key);
   const iv = CryptoJS.enc.Base64.parse(key);
@@ -114,13 +122,7 @@ function encryptPassword() {
 
 
 }
-
-
-
-
-// ----------------------------- SWAL ALERT ----------------- 
-
-
+// ----------------- SWAL ALERT ----------------- 
 
 const email = document.getElementById('email');
 const password = document.getElementById('pwd');
@@ -149,79 +151,57 @@ function setSuccessFor(input) {
 function isEmail(email) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
+var otp = '';
+var temp=''
+function getOtp() {
+  var email = document.getElementById("forgot-email").value;      
+  //window.localStorage.setItem("id", id);
 
-function getPassword() {
-  var email = document.getElementById("forgot-email").value;
-  console.log(email);
-
-  fetch("https://localhost:44315/api/employee/forgot/" + email,
+  window.localStorage.setItem("abcd",email);
+    var digits = '0123456789';
+    var otpLength = 6;  
+    for(let i=1; i<=otpLength; i++)
     {
-      method: "GET",
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer",
-    })
-    //.then(response => response.json())
-    .then((result) => result.text())
 
-    .then((data) => {
-      var encryptedPassword = data;
-      console.log(encryptedPassword)
-      const key = '55a51621a6648525';
-      const keyutf = CryptoJS.enc.Utf8.parse(key);
-      const iv = CryptoJS.enc.Base64.parse(key);
-      const dec = CryptoJS.AES.decrypt(
-        { ciphertext: CryptoJS.enc.Base64.parse(encryptedPassword) },
-        keyutf,
-        {
-          iv: iv
-        });
-      const decStr = CryptoJS.enc.Utf8.stringify(dec)
-      console.log('decStr', decStr);
+        var index = Math.floor(Math.random()*(digits.length));
+        otp = otp + digits[index];
+        temp=otp;
 
-      // var body = $('#body').val();
-
-      var Body = 'Hey User, Your password is given below. Please do not share this with anyone and save it for future references.<br><b>PASSWORD</b> :' + decStr;
-      //console.log(name, phone, email, message);
+    }
+      var Body = 'Dear Sir/Madam, <br>Your One Time Password(OTP) :<br><strong>'+temp+'</strong><br>Your OTP will expire in 5 min.<br>Do not share your OTP with anyone else.<br><br>Warm Regards,<br>HRMS ,Cyber Group Inc';
 
       Email.send({
         SecureToken: "15310dfc-5ba6-423d-8644-4b455b088f7c",
         To: email,
         From: "hrmscygrp@gmail.com",
-        Subject: "Encrypted Password - " + email,
+        Subject: "One Time Password ",
         Body: Body
       }).then(
         message => {
-           //console.log (message);
            if (message == 'OK') {
-            swal({
-              icon: 'success',
-              // title: 'Login successful',
-              text: 'Your mail has been send. Thank you for connecting.',
-    
-            });
-            // alert('Your mail has been send. Thank you for connecting.');
+            
+            console.log('Your OTP has been sent. Thank you for connecting.');
           }
           else {
             console.error(message);
-            swal({
-              icon: 'error',
-              text: 'There is error at sending message',
-    
-            });
-            // alert('There is error at sending message. ')
+            
+            console.log('There is error at sending message. ')
 
           }
 
         }
       );
-    });
+      otp='';
+    
+}
+function checkOtp(){
+  var input=document.getElementById("otp").value
+  if(temp==input) {
+   
+    window.open("http://127.0.0.1:5500/HRMS/otp.html","_self");
+    
+  }
+      
 }
 
 
