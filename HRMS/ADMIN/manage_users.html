@@ -263,9 +263,7 @@
                           </div>
 
 
-                          <!-- Text input-->
                           <div class="form-ctrl">
-                            <!-- <label>Password</label> -->
                             <input name="user_password" id="emppass" placeholder="Password" class="form-control"
                               type="password">
                             <i class="fas fa-check-circle"></i>
@@ -273,7 +271,6 @@
                             <small>Error message</small>
                           </div>
                           <div class="form-ctrl">
-                            <!-- <label>Contact Number</label> -->
                             <input name="contact_no" id="empcontact" placeholder="(+91)" class="form-control"
                               type="text">
                             <i class="fas fa-check-circle"></i>
@@ -286,7 +283,7 @@
                               onclick="checkDesignation()">
                               <option value="">Select Designation</option>
                               <option>Manager</option>
-                              <option>Employee</option>
+                              <option>SDE</option>
 
 
                             </select>
@@ -328,14 +325,8 @@
                       <div class="modal-body">
 
                         <form class="form" id="contact_form">
-                          <!-- <form class="well form-horizontal" action=" " method="post"  id="contact_form"> -->
-
-
-
-                          <!-- Text input-->
 
                           <div class="form-ctrl">
-                            <!-- <label>Employee Name</label> -->
                             <input name="first_name" id="emp_name" placeholder="Employee Name" class="form-control"
                               type="text">
                             <i class="fas fa-check-circle"></i>
@@ -346,7 +337,6 @@
 
                           <!-- Text input-->
                           <div class="form-ctrl">
-                            <!-- <label>Email</label> -->
                             <input name="last_name" id="emp_emailid" placeholder="Email Id" class="form-control"
                               type="text">
                             <i class="fas fa-check-circle"></i>
@@ -360,7 +350,7 @@
                               onclick="checkDesg()">
                               <option value="">Select Designation</option>
                               <option>Manager</option>
-                              <option>Employee</option>
+                              <option>SDE</option>
 
 
                             </select>
@@ -431,7 +421,7 @@
 
                 <div class="tab-pane fade active show" id="home" role="tabpanel">
                   <input type="text" class="form-control" id="myInput" onkeyup="findCurrentEmployee()"
-                    placeholder="Search for names.." title="Type in a name">
+                    placeholder="Search for Current Employees" title="Type in a name">
 
                   <table class="table table-hover myTable">
                     <thead>
@@ -454,7 +444,7 @@
                 </div>
                 <div class="tab-pane fade " id="profile" role="tabpanel">
                   <input class="form-control" type="text" id="myInput2" onkeyup="findPastEmployee()"
-                    placeholder="Search for names.." title="Type in a name">
+                    placeholder="Search for Former Employees" title="Type in a name">
                   <table class="table table-hover myTable2">
 
                     <thead>

@@ -226,16 +226,11 @@ $("#allEmployeeList").on("click", function () {
 });
 setTimeout(function() { 
     const select = document.querySelectorAll("select");
-    // var options = new Array;
-    // $("#allEmployeeList option").each  ( function() {
-    //     options.push ( $(this).val() );
-    // });
     const options = Array.from(select[0].options);
     console.log(options);
     const input = document.querySelector("input");
   
     function findMatches(search, options) {
-      // console.log("hello")
       return options.filter((option) => {
         const regex = new RegExp(search, "gi");
         return option.text.match(regex);
@@ -243,7 +238,6 @@ setTimeout(function() {
     }
   
     function filterOptions() {
-      // console.log("hi")
       options.forEach((option) => {
         option.remove();
         option.selected = false;

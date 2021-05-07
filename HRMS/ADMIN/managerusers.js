@@ -275,7 +275,6 @@ function AddEmployee() {
     .then((result) => {
       console.log("upar");
       EmployeeFetchData();
-      //window.location.reload();
       console.log("niche");
     });
 }

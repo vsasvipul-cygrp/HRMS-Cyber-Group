@@ -152,11 +152,9 @@ function isEmail(email) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 var otp = '';
-var temp=''
+var temp='';
 function getOtp() {
   var email = document.getElementById("forgot-email").value;      
-  //window.localStorage.setItem("id", id);
-
   window.localStorage.setItem("abcd",email);
     var digits = '0123456789';
     var otpLength = 6;  
@@ -196,12 +194,9 @@ function getOtp() {
 }
 function checkOtp(){
   var input=document.getElementById("otp").value
-  if(temp==input) {
-   
-    window.open("http://127.0.0.1:5500/HRMS/otp.html","_self");
-    
-  }
-      
+  if(temp==input) {   
+    window.open("http://127.0.0.1:5500/HRMS/otp.html","_self");    
+  }      
 }
 
 
